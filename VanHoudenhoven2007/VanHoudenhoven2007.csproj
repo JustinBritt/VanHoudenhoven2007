@@ -3,6 +3,9 @@
     <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.1</Version>
+    <RepositoryUrl>https://github.com/JustinBritt/VanHoudenhoven2007</RepositoryUrl>
+    <Description>Data from VanHoudenhoven et al. (2007)</Description>
     <Copyright>2021</Copyright>
   </PropertyGroup>
 
