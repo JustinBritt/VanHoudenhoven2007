@@ -13,12 +13,10 @@
         public EarNoseThroatSurgerySurgicalDuration(
             IDurationFactory durationFactory)
         {
-            this.Category1Mean = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)102,
-                Unit = minutes
-            };
+            this.Category1Mean = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 102m);
 
             this.Category2Mean = new Duration()
             {
