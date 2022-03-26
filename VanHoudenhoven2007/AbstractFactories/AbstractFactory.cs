@@ -13,6 +13,21 @@
             return new AbstractFactory();
         }
 
+        public IDependenciesAbstractFactory CreateDependenciesAbstractFactory()
+        {
+            IDependenciesAbstractFactory abstractFactory = null;
+
+            try
+            {
+                abstractFactory = new DependenciesAbstractFactory();
+            }
+            finally
+            {
+            }
+
+            return abstractFactory;
+        }
+
         public ISurgicalDurationsAbstractFactory CreateSurgicalDurationsAbstractFactory()
         {
             ISurgicalDurationsAbstractFactory abstractFactory = null;
