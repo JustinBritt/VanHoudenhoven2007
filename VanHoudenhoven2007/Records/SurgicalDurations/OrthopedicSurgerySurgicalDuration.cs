@@ -53,61 +53,45 @@
                 unit: minutes,
                 value: 0m);
 
-            this.Category1StandardDeviation = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)58,
-                Unit = minutes
-            };
+            this.Category1StandardDeviation = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 58m);
 
-            this.Category2StandardDeviation = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)23,
-                Unit = minutes
-            };
+            this.Category2StandardDeviation = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 23m);
 
-            this.Category3StandardDeviation = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)30,
-                Unit = minutes
-            };
+            this.Category3StandardDeviation = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 30m);
 
-            this.Category4StandardDeviation = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)38,
-                Unit = minutes
-            };
+            this.Category4StandardDeviation = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 38m);
 
-            this.Category5StandardDeviation = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)43,
-                Unit = minutes
-            };
+            this.Category5StandardDeviation = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 43m);
 
-            this.Category6StandardDeviation = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)45,
-                Unit = minutes
-            };
+            this.Category6StandardDeviation = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 45m);
 
-            this.Category7StandardDeviation = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)102,
-                Unit = minutes
-            };
+            this.Category7StandardDeviation = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 102m);
 
-            this.Category8StandardDeviation = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)0,
-                Unit = minutes
-            };
+            this.Category8StandardDeviation = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 0m);
         }
 
         public Duration Category1Mean { get; }
