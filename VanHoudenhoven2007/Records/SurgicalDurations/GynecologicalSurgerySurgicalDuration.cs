@@ -13,61 +13,45 @@
         public GynecologicalSurgerySurgicalDuration(
             IDurationFactory durationFactory)
         {
-            this.Category1Mean = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)80,
-                Unit = minutes
-            };
+            this.Category1Mean = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 80m);
 
-            this.Category2Mean = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)52,
-                Unit = minutes
-            };
+            this.Category2Mean = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 52m);
 
-            this.Category3Mean = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)73,
-                Unit = minutes
-            };
+            this.Category3Mean = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 73m);
 
-            this.Category4Mean = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)98,
-                Unit = minutes
-            };
+            this.Category4Mean = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 98m);
 
-            this.Category5Mean = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)125,
-                Unit = minutes
-            };
+            this.Category5Mean = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 125m);
 
-            this.Category6Mean = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)156,
-                Unit = minutes
-            };
+            this.Category6Mean = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 156m);
 
-            this.Category7Mean = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)213,
-                Unit = minutes
-            };
+            this.Category7Mean = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 213m);
 
-            this.Category8Mean = new Duration()
-            {
-                System = unitsofmeasure,
-                Value = (decimal)0,
-                Unit = minutes
-            };
+            this.Category8Mean = durationFactory.Create(
+                system: unitsofmeasure,
+                unit: minutes,
+                value: 0m);
 
             this.Category1StandardDeviation = new Duration()
             {
