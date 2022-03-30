@@ -3,10 +3,12 @@
     using Hl7.Fhir.Model;
 
     using VanHoudenhoven2007.Interfaces.SurgicalFrequencies;
+    using VanHoudenhoven2007.InterfacesFactories.Dependencies.Hl7.Fhir.R4.Model;
 
     public sealed record GynecologicalSurgerySurgicalFrequency : IGynecologicalSurgerySurgicalFrequency
     {
-        public GynecologicalSurgerySurgicalFrequency()
+        public GynecologicalSurgerySurgicalFrequency(
+            INullableValueFactory nullableValueFactory)
         {
             this.Category1Frequency = new FhirDecimal((decimal)0.02);
 
