@@ -10,21 +10,29 @@
         public TraumaSurgicalFrequency(
             INullableValueFactory nullableValueFactory)
         {
-            this.Category1Frequency = new FhirDecimal((decimal)0.07);
+            this.Category1Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+                0.07m);
 
-            this.Category2Frequency = new FhirDecimal((decimal)0.22);
+            this.Category2Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+                0.22m);
 
-            this.Category3Frequency = new FhirDecimal((decimal)0.32);
+            this.Category3Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+                0.32m);
 
-            this.Category4Frequency = new FhirDecimal((decimal)0.20);
+            this.Category4Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+                0.20m);
 
-            this.Category5Frequency = new FhirDecimal((decimal)0.19);
+            this.Category5Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+                0.19m);
 
-            this.Category6Frequency = new FhirDecimal((decimal)0);
+            this.Category6Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+                0m);
 
-            this.Category7Frequency = new FhirDecimal((decimal)0);
+            this.Category7Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+                0m);
 
-            this.Category8Frequency = new FhirDecimal((decimal)0);
+            this.Category8Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+                0m);
         }
 
         public FhirDecimal Category1Frequency { get; }
