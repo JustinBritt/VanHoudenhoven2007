@@ -70,7 +70,7 @@
 
             return statistic.Value switch
             {
-                "mean" => category.Value switch
+                "average" => category.Value switch
                 {
                   1 => surgicalDuration.Category1Mean,
 
