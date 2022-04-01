@@ -3,10 +3,12 @@
     using Hl7.Fhir.Model;
 
     using VanHoudenhoven2007.Interfaces.SurgicalFrequencies;
+    using VanHoudenhoven2007.InterfacesFactories.Dependencies.Hl7.Fhir.R4.Model;
 
     public sealed record UrologySurgicalFrequency : IUrologySurgicalFrequency
     {
-        public UrologySurgicalFrequency()
+        public UrologySurgicalFrequency(
+            INullableValueFactory nullableValueFactory)
         {
             this.Category1Frequency = new FhirDecimal((decimal)0.03);
 
