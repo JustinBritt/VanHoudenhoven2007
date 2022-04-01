@@ -68,7 +68,7 @@
                 _ => null
             };
 
-            Duration duration = statistic.Value switch
+            return statistic.Value switch
             {
                 "mean" => category.Value switch
                 {
@@ -114,8 +114,6 @@
 
                 _ => null
             };
-
-            return duration;
         }
     }
 }
