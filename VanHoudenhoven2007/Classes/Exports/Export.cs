@@ -14,8 +14,7 @@
         {
         }
 
-        // TODO: Finish
-        public void GetSurgicalDuration(
+        public Duration GetSurgicalDuration(
             PositiveInt category,
             CodeableConcept specialty,
             Code statistic)
@@ -68,6 +67,55 @@
 
                 _ => null
             };
+
+            Duration duration = statistic.Value switch
+            {
+                "mean" => category.Value switch
+                {
+                  1 => surgicalDuration.Category1Mean,
+
+                  2 => surgicalDuration.Category2Mean,
+
+                  3 => surgicalDuration.Category3Mean,
+
+                  4 => surgicalDuration.Category4Mean,
+
+                  5 => surgicalDuration.Category5Mean,
+
+                  6 => surgicalDuration.Category6Mean,
+
+                  7 => surgicalDuration.Category7Mean,
+
+                  8 => surgicalDuration.Category8Mean,
+                  
+                  _ => null
+                },
+
+                "std-dev" => category.Value switch
+                {
+                  1 => surgicalDuration.Category1StandardDeviation,
+
+                  2 => surgicalDuration.Category2StandardDeviation,
+
+                  3 => surgicalDuration.Category3StandardDeviation,
+
+                  4 => surgicalDuration.Category4StandardDeviation,
+
+                  5 => surgicalDuration.Category5StandardDeviation,
+
+                  6 => surgicalDuration.Category6StandardDeviation,
+
+                  7 => surgicalDuration.Category7StandardDeviation,
+
+                  8 => surgicalDuration.Category8StandardDeviation,
+
+                  _ => null
+                },
+
+                _ => null
+            };
+
+            return duration;
         }
     }
 }
