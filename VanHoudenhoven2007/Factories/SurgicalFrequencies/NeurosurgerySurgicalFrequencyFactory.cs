@@ -1,6 +1,7 @@
 ﻿namespace VanHoudenhoven2007.Factories.SurgicalFrequencies
 {
     using VanHoudenhoven2007.Interfaces.SurgicalFrequencies;
+    using VanHoudenhoven2007.InterfacesFactories.Dependencies.Hl7.Fhir.R4.Model;
     using VanHoudenhoven2007.InterfacesFactories.SurgicalFrequencies;
     using VanHoudenhoven2007.Records.SurgicalFrequencies;
 
@@ -10,13 +11,15 @@
         {
         }
 
-        public INeurosurgerySurgicalFrequency Create()
+        public INeurosurgerySurgicalFrequency Create(
+            INullableValueFactory nullableValueFactory)
         {
             INeurosurgerySurgicalFrequency surgicalFrequency = null;
 
             try
             {
-                surgicalFrequency = new NeurosurgerySurgicalFrequency();
+                surgicalFrequency = new NeurosurgerySurgicalFrequency(
+                    nullableValueFactory);
             }
             finally
             {
