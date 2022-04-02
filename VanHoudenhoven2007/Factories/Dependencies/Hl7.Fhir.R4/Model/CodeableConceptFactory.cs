@@ -6,6 +6,8 @@
 
     internal sealed class CodeableConceptFactory : ICodeableConceptFactory
     {
+        private const string EarNoseThroat = "394604002";
+
         private const string SNOMEDCT = "http://snomed.info/sct";
 
         public CodeableConceptFactory()
@@ -15,7 +17,7 @@
         public CodeableConcept Create(
             string code,
             string system,
-            string text)
+            string text = null)
         {
             CodeableConcept codeableConcept;
 
@@ -31,6 +33,13 @@
             }
 
             return codeableConcept;
+        }
+
+        public CodeableConcept CreateEarNoseThroat()
+        {
+            return this.Create(
+                code: EarNoseThroat,
+                system: SNOMEDCT);
         }
     }
 }
