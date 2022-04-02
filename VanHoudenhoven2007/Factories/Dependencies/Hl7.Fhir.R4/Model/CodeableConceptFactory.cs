@@ -10,7 +10,7 @@
         private const string EarNoseThroatSurgery = "394604002";
         private const string GeneralSurgery = "394609007";
 
-        // Systems
+        // System
         private const string SNOMEDCT = "http://snomed.info/sct";
 
         public CodeableConceptFactory()
