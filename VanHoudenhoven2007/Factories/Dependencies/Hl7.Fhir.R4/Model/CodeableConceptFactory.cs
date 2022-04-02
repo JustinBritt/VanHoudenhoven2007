@@ -6,6 +6,8 @@
 
     internal sealed class CodeableConceptFactory : ICodeableConceptFactory
     {
+        private const string SNOMEDCT = "http://snomed.info/sct";
+
         public CodeableConceptFactory()
         {
         }
