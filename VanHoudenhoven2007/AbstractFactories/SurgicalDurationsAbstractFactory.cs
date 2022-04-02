@@ -139,7 +139,7 @@
 
             try
             {
-                factory = specialty.Text switch
+                factory = specialty.Coding[0].Code switch
                 {
                     // EarNoseThroatSurgery
                     "394604002" => this.CreateEarNoseThroatSurgerySurgicalDurationFactory(),
