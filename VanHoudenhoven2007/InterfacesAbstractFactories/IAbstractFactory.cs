@@ -2,6 +2,8 @@
 {
     public interface IAbstractFactory
     {
+        IContextsAbstractFactory CreateContextsAbstractFactory();
+
         IDependenciesAbstractFactory CreateDependenciesAbstractFactory();
 
         ISurgicalDurationsAbstractFactory CreateSurgicalDurationsAbstractFactory();
