@@ -13,7 +13,7 @@
         {
         }
 
-        public DataType GetSurgicalFrequency(
+        public INullableValue<decimal> GetSurgicalFrequency(
             IAbstractFactory abstractFactory,
             ISurgicalFrequencyInputContext surgicalFrequencyInputContext)
         {

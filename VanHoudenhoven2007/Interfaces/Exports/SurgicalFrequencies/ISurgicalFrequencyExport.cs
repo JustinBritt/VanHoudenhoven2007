@@ -7,7 +7,7 @@
 
     public interface ISurgicalFrequencyExport
     {
-        DataType GetSurgicalFrequency(
+        INullableValue<decimal> GetSurgicalFrequency(
             IAbstractFactory abstractFactory,
             ISurgicalFrequencyInputContext surgicalFrequencyInputContext);
     }

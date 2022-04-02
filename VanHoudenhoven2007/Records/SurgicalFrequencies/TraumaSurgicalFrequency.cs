@@ -10,45 +10,45 @@
         public TraumaSurgicalFrequency(
             INullableValueFactory nullableValueFactory)
         {
-            this.Category1Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+            this.Category1Frequency = nullableValueFactory.Create<decimal>(
                 0.07m);
 
-            this.Category2Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+            this.Category2Frequency = nullableValueFactory.Create<decimal>(
                 0.22m);
 
-            this.Category3Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+            this.Category3Frequency = nullableValueFactory.Create<decimal>(
                 0.32m);
 
-            this.Category4Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+            this.Category4Frequency = nullableValueFactory.Create<decimal>(
                 0.20m);
 
-            this.Category5Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+            this.Category5Frequency = nullableValueFactory.Create<decimal>(
                 0.19m);
 
-            this.Category6Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+            this.Category6Frequency = nullableValueFactory.Create<decimal>(
                 0m);
 
-            this.Category7Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+            this.Category7Frequency = nullableValueFactory.Create<decimal>(
                 0m);
 
-            this.Category8Frequency = (FhirDecimal)nullableValueFactory.Create<decimal>(
+            this.Category8Frequency = nullableValueFactory.Create<decimal>(
                 0m);
         }
 
-        public FhirDecimal Category1Frequency { get; }
+        public INullableValue<decimal> Category1Frequency { get; }
 
-        public FhirDecimal Category2Frequency { get; }
+        public INullableValue<decimal> Category2Frequency { get; }
 
-        public FhirDecimal Category3Frequency { get; }
+        public INullableValue<decimal> Category3Frequency { get; }
 
-        public FhirDecimal Category4Frequency { get; }
+        public INullableValue<decimal> Category4Frequency { get; }
 
-        public FhirDecimal Category5Frequency { get; }
+        public INullableValue<decimal> Category5Frequency { get; }
 
-        public FhirDecimal Category6Frequency { get; }
+        public INullableValue<decimal> Category6Frequency { get; }
 
-        public FhirDecimal Category7Frequency { get; }
+        public INullableValue<decimal> Category7Frequency { get; }
 
-        public FhirDecimal Category8Frequency { get; }
+        public INullableValue<decimal> Category8Frequency { get; }
     }
 }

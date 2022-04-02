@@ -6,7 +6,7 @@
 
     public static class SurgicalFrequencyExtensions
     {
-        public static DataType GetValue(
+        public static INullableValue<decimal> GetValue(
             this ISurgicalFrequency surgicalFrequency,
             INullableValue<int> category)
         {

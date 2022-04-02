@@ -4,20 +4,20 @@
 
     public interface ISurgicalFrequency
     {
-        FhirDecimal Category1Frequency { get; }
+        INullableValue<decimal> Category1Frequency { get; }
 
-        FhirDecimal Category2Frequency { get; }
+        INullableValue<decimal> Category2Frequency { get; }
 
-        FhirDecimal Category3Frequency { get; }
+        INullableValue<decimal> Category3Frequency { get; }
 
-        FhirDecimal Category4Frequency { get; }
+        INullableValue<decimal> Category4Frequency { get; }
 
-        FhirDecimal Category5Frequency { get; }
+        INullableValue<decimal> Category5Frequency { get; }
 
-        FhirDecimal Category6Frequency { get; }
+        INullableValue<decimal> Category6Frequency { get; }
 
-        FhirDecimal Category7Frequency { get; }
+        INullableValue<decimal> Category7Frequency { get; }
 
-        FhirDecimal Category8Frequency { get; }
+        INullableValue<decimal> Category8Frequency { get; }
     }
 }
