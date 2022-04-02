@@ -6,8 +6,11 @@
 
     internal sealed class CodeableConceptFactory : ICodeableConceptFactory
     {
+        // Codes
         private const string EarNoseThroatSurgery = "394604002";
+        private const string GeneralSurgery = "394609007";
 
+        // Systems
         private const string SNOMEDCT = "http://snomed.info/sct";
 
         public CodeableConceptFactory()
