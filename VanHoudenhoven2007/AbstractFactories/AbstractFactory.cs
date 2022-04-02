@@ -43,6 +43,21 @@
             return abstractFactory;
         }
 
+        public IExportsAbstractFactory CreateExportsAbstractFactory()
+        {
+            IExportsAbstractFactory abstractFactory = null;
+
+            try
+            {
+                abstractFactory = new ExportsAbstractFactory();
+            }
+            finally
+            {
+            }
+
+            return abstractFactory;
+        }
+
         public ISurgicalDurationsAbstractFactory CreateSurgicalDurationsAbstractFactory()
         {
             ISurgicalDurationsAbstractFactory abstractFactory = null;

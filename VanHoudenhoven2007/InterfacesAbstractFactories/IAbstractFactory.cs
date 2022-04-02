@@ -6,6 +6,8 @@
 
         IDependenciesAbstractFactory CreateDependenciesAbstractFactory();
 
+        IExportsAbstractFactory CreateExportsAbstractFactory();
+
         ISurgicalDurationsAbstractFactory CreateSurgicalDurationsAbstractFactory();
 
         ISurgicalFrequenciesAbstractFactory CreateSurgicalFrequenciesAbstractFactory();
