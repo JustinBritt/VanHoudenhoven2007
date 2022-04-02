@@ -1,4 +1,4 @@
-﻿namespace VanHoudenhoven2007.Interfaces.Contexts
+﻿namespace VanHoudenhoven2007.Interfaces.Contexts.SurgicalDurations
 {
     using Hl7.Fhir.Model;
 

@@ -1,8 +1,8 @@
-﻿namespace VanHoudenhoven2007.Classes.Contexts
+﻿namespace VanHoudenhoven2007.Classes.Contexts.SurgicalDurations
 {
     using Hl7.Fhir.Model;
 
-    using VanHoudenhoven2007.Interfaces.Contexts;
+    using VanHoudenhoven2007.Interfaces.Contexts.SurgicalDurations;
 
     internal sealed class SurgicalDurationInputContext : ISurgicalDurationInputContext
     {

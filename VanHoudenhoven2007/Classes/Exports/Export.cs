@@ -4,7 +4,7 @@
 
     using VanHoudenhoven2007.Extensions.SurgicalDurations;
     using VanHoudenhoven2007.Extensions.SurgicalFrequencies;
-    using VanHoudenhoven2007.Interfaces.Contexts;
+    using VanHoudenhoven2007.Interfaces.Contexts.SurgicalDurations;
     using VanHoudenhoven2007.Interfaces.Exports;
     using VanHoudenhoven2007.InterfacesAbstractFactories;
 
