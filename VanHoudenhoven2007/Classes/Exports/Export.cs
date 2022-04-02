@@ -16,18 +16,16 @@
 
         public DataType GetSurgicalDuration(
             IAbstractFactory abstractFactory,
-            PositiveInt category,
-            CodeableConcept specialty,
-            Code statistic)
+            ISurgicalDurationInputContext surgicalDurationInputContext)
         {
             return abstractFactory.CreateSurgicalDurationsAbstractFactory()
                 .CreateSurgicalDurationFactory(
-                    specialty)
+                    surgicalDurationInputContext.Specialty)
                 .Create(
                     abstractFactory.CreateDependenciesAbstractFactory().CreateDurationFactory())
                 .GetValue(
-                    category,
-                    statistic);
+                    surgicalDurationInputContext.Category,
+                    surgicalDurationInputContext.Statistic);
         }
 
         public DataType GetSurgicalFrequency(
