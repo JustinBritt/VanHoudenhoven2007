@@ -26,7 +26,7 @@
 
             IDurationFactory durationFactory = abstractFactory.CreateDependenciesAbstractFactory().CreateDurationFactory();
 
-            ISurgicalData surgicalData = specialty.Text switch
+            ISurgicalDuration surgicalData = specialty.Text switch
             {
                 // EarNoseThroatSurgery
                 "394604002" => abstractFactory.CreateSurgicalDurationsAbstractFactory().CreateEarNoseThroatSurgerySurgicalDurationFactory().Create(
@@ -75,42 +75,42 @@
             {
                 "average" => category.Value switch
                 {
-                  1 => ((ISurgicalDuration)(surgicalData)).Category1Mean,
+                  1 => surgicalData.Category1Mean,
 
-                  2 => ((ISurgicalDuration)(surgicalData)).Category2Mean,
+                  2 => surgicalData.Category2Mean,
 
-                  3 => ((ISurgicalDuration)(surgicalData)).Category3Mean,
+                  3 => surgicalData.Category3Mean,
 
-                  4 => ((ISurgicalDuration)(surgicalData)).Category4Mean,
+                  4 => surgicalData.Category4Mean,
                   
-                  5 => ((ISurgicalDuration)(surgicalData)).Category5Mean,
+                  5 => surgicalData.Category5Mean,
 
-                  6 => ((ISurgicalDuration)(surgicalData)).Category6Mean,
+                  6 => surgicalData.Category6Mean,
 
-                  7 => ((ISurgicalDuration)(surgicalData)).Category7Mean,
+                  7 => surgicalData.Category7Mean,
 
-                  8 => ((ISurgicalDuration)(surgicalData)).Category8Mean,
+                  8 => surgicalData.Category8Mean,
 
                   _ => null
                 },
 
                 "std-dev" => category.Value switch
                 {
-                    1 => ((ISurgicalDuration)(surgicalData)).Category1StandardDeviation,
+                    1 => surgicalData.Category1StandardDeviation,
 
-                    2 => ((ISurgicalDuration)(surgicalData)).Category2StandardDeviation,
+                    2 => surgicalData.Category2StandardDeviation,
 
-                    3 => ((ISurgicalDuration)(surgicalData)).Category3StandardDeviation,
+                    3 => surgicalData.Category3StandardDeviation,
 
-                    4 => ((ISurgicalDuration)(surgicalData)).Category4StandardDeviation,
+                    4 => surgicalData.Category4StandardDeviation,
 
-                    5 => ((ISurgicalDuration)(surgicalData)).Category5StandardDeviation,
+                    5 => surgicalData.Category5StandardDeviation,
 
-                    6 => ((ISurgicalDuration)(surgicalData)).Category6StandardDeviation,
+                    6 => surgicalData.Category6StandardDeviation,
 
-                    7 => ((ISurgicalDuration)(surgicalData)).Category7StandardDeviation,
+                    7 => surgicalData.Category7StandardDeviation,
 
-                    8 => ((ISurgicalDuration)(surgicalData)).Category8StandardDeviation,
+                    8 => surgicalData.Category8StandardDeviation,
 
                     _ => null
                 },
