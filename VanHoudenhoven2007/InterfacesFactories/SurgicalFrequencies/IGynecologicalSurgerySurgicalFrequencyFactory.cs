@@ -1,11 +1,6 @@
 ﻿namespace VanHoudenhoven2007.InterfacesFactories.SurgicalFrequencies
 {
-    using VanHoudenhoven2007.Interfaces.SurgicalFrequencies;
-    using VanHoudenhoven2007.InterfacesFactories.Dependencies.Hl7.Fhir.R4.Model;
-
-    public interface IGynecologicalSurgerySurgicalFrequencyFactory
+    public interface IGynecologicalSurgerySurgicalFrequencyFactory : ISurgicalFrequencyFactory
     {
-        IGynecologicalSurgerySurgicalFrequency Create(
-            INullableValueFactory nullableValueFactory);
     }
 }

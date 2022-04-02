@@ -11,7 +11,7 @@
         {
         }
 
-        public IUrologySurgicalFrequency Create(
+        public ISurgicalFrequency Create(
             INullableValueFactory nullableValueFactory)
         {
             IUrologySurgicalFrequency surgicalFrequency = null;

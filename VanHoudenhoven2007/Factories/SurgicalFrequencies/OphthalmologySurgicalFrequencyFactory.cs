@@ -11,7 +11,7 @@
         {
         }
 
-        public IOphthalmologySurgicalFrequency Create(
+        public ISurgicalFrequency Create(
             INullableValueFactory nullableValueFactory)
         {
             IOphthalmologySurgicalFrequency surgicalFrequency = null;
