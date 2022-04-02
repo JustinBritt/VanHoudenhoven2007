@@ -14,12 +14,11 @@
         }
 
         public DataType GetSurgicalDuration(
+            IAbstractFactory abstractFactory,
             PositiveInt category,
             CodeableConcept specialty,
             Code statistic)
         {
-            IAbstractFactory abstractFactory = AbstractFactory.Create();
-
             return abstractFactory.CreateSurgicalDurationsAbstractFactory()
                 .CreateSurgicalDurationFactory(
                     specialty)
