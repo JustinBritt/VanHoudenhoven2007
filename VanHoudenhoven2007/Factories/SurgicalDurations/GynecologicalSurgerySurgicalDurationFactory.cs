@@ -11,7 +11,7 @@
         {
         }
 
-        public IGynecologicalSurgerySurgicalDuration Create(
+        public ISurgicalDuration Create(
             IDurationFactory durationFactory)
         {
             IGynecologicalSurgerySurgicalDuration surgicalDuration = null;

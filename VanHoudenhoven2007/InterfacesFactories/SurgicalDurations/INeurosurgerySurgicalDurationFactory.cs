@@ -1,11 +1,6 @@
 ﻿namespace VanHoudenhoven2007.InterfacesFactories.SurgicalDurations
 {
-    using VanHoudenhoven2007.Interfaces.SurgicalDurations;
-    using VanHoudenhoven2007.InterfacesFactories.Dependencies.Hl7.Fhir.R4.Model;
-
-    public interface INeurosurgerySurgicalDurationFactory
+    public interface INeurosurgerySurgicalDurationFactory : ISurgicalDurationFactory
     {
-        INeurosurgerySurgicalDuration Create(
-            IDurationFactory durationFactory);
     }
 }

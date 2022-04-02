@@ -11,7 +11,7 @@
         {
         }
 
-        public IOrthopedicSurgerySurgicalDuration Create(
+        public ISurgicalDuration Create(
             IDurationFactory durationFactory)
         {
             IOrthopedicSurgerySurgicalDuration surgicalDuration = null;

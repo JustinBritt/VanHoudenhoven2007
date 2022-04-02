@@ -11,7 +11,7 @@
         {
         }
 
-        public IOralSurgerySurgicalDuration Create(
+        public ISurgicalDuration Create(
             IDurationFactory durationFactory)
         {
             IOralSurgerySurgicalDuration surgicalDuration = null;
