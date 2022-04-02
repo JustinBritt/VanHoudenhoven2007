@@ -44,5 +44,12 @@
                 code: EarNoseThroatSurgery,
                 system: SNOMEDCT);
         }
+
+        public CodeableConcept CreateGeneralSurgery()
+        {
+            return this.Create(
+                code: GeneralSurgery,
+                system: SNOMEDCT);
+        }
     }
 }
