@@ -1,7 +1,5 @@
 ﻿namespace VanHoudenhoven2007.Classes.Exports.SurgicalDurations
 {
-    using Hl7.Fhir.Model;
-
     using VanHoudenhoven2007.Extensions.SurgicalDurations;
     using VanHoudenhoven2007.Extensions.SurgicalFrequencies;
     using VanHoudenhoven2007.Interfaces.Contexts.SurgicalDurations;
