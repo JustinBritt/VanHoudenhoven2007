@@ -27,50 +27,7 @@
 
             IDurationFactory durationFactory = abstractFactory.CreateDependenciesAbstractFactory().CreateDurationFactory();
 
-            ISurgicalDuration surgicalData = specialty.Text switch
-            {
-                // EarNoseThroatSurgery
-                "394604002" => surgicalDurationsAbstractFactory.CreateEarNoseThroatSurgerySurgicalDurationFactory().Create(
-                    durationFactory),
-
-                // GeneralSurgery
-                "394609007" => surgicalDurationsAbstractFactory.CreateGeneralSurgerySurgicalDurationFactory().Create(
-                    durationFactory),
-
-                // GynecologicalSurgery
-                "394586005" => surgicalDurationsAbstractFactory.CreateGynecologicalSurgerySurgicalDurationFactory().Create(
-                    durationFactory),
-
-                // Neurosurgery
-                "394610002" => surgicalDurationsAbstractFactory.CreateNeurosurgerySurgicalDurationFactory().Create(
-                    durationFactory),
-
-                // Ophthalmology
-                "422191005" or "394594003" => surgicalDurationsAbstractFactory.CreateOphthalmologySurgicalDurationFactory().Create(
-                    durationFactory),
-
-                // OralSurgery
-                "394605001" => surgicalDurationsAbstractFactory.CreateOralSurgerySurgicalDurationFactory().Create(
-                    durationFactory),
-
-                // OrthopedicSurgery
-                "24241000087106" => surgicalDurationsAbstractFactory.CreateOrthopedicSurgerySurgicalDurationFactory().Create(
-                    durationFactory),
-
-                // PlasticSurgery
-                "394611003" => surgicalDurationsAbstractFactory.CreatePlasticSurgerySurgicalDurationFactory().Create(
-                    durationFactory),
-
-                // Trauma
-                "394801008" => surgicalDurationsAbstractFactory.CreateTraumaSurgicalDurationFactory().Create(
-                    durationFactory),
-
-                // Urology
-                "394612005" => surgicalDurationsAbstractFactory.CreateUrologySurgicalDurationFactory().Create(
-                    durationFactory),
-
-                _ => null
-            };
+            ISurgicalDuration surgicalData = surgicalDurationsAbstractFactory.CreateSurgicalDurationFactory(specialty).Create(durationFactory);
 
             return statistic.Value switch
             {
