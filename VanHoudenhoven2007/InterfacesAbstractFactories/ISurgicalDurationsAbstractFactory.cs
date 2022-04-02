@@ -1,5 +1,7 @@
 ﻿namespace VanHoudenhoven2007.InterfacesAbstractFactories
 {
+    using Hl7.Fhir.Model;
+
     using VanHoudenhoven2007.InterfacesFactories.SurgicalDurations;
 
     public interface ISurgicalDurationsAbstractFactory
@@ -19,6 +21,9 @@
         IOrthopedicSurgerySurgicalDurationFactory CreateOrthopedicSurgerySurgicalDurationFactory();
 
         IPlasticSurgerySurgicalDurationFactory CreatePlasticSurgerySurgicalDurationFactory();
+
+        ISurgicalDurationFactory CreateSurgicalDurationFactory(
+            CodeableConcept specialty);
 
         ITraumaSurgicalDurationFactory CreateTraumaSurgicalDurationFactory();
 
