@@ -2,7 +2,6 @@
 {
     using Hl7.Fhir.Model;
 
-    using VanHoudenhoven2007.AbstractFactories;
     using VanHoudenhoven2007.Extensions.SurgicalDurations;
     using VanHoudenhoven2007.Interfaces.Exports;
     using VanHoudenhoven2007.InterfacesAbstractFactories;
