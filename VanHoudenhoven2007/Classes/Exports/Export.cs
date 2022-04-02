@@ -18,6 +18,7 @@
 
         public DataType GetSurgicalData(
             PositiveInt category,
+            Parameter parameter,
             CodeableConcept specialty,
             Code statistic)
         {
