@@ -7,7 +7,7 @@
     public interface ISurgicalFrequencyInputContextFactory
     {
         ISurgicalFrequencyInputContext Create(
-            PositiveInt category,
+            INullableValue<int> category,
             CodeableConcept specialty);
     }
 }

@@ -7,7 +7,7 @@
     internal sealed class SurgicalDurationInputContext : ISurgicalDurationInputContext
     {
         public SurgicalDurationInputContext(
-            PositiveInt category,
+            INullableValue<int> category,
             CodeableConcept specialty,
             Code statistic)
         {
@@ -18,7 +18,7 @@
             this.Statistic = statistic;
         }
 
-        public PositiveInt Category { get; }
+        public INullableValue<int> Category { get; }
 
         public CodeableConcept Specialty { get; }
 

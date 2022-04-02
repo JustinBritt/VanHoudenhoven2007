@@ -8,9 +8,9 @@
     {
         public static DataType GetValue(
             this ISurgicalFrequency surgicalFrequency,
-            PositiveInt category)
+            INullableValue<int> category)
         {
-            return category.Value switch
+            return category.Value.Value switch
             {
                 1 => surgicalFrequency.Category1Frequency,
 

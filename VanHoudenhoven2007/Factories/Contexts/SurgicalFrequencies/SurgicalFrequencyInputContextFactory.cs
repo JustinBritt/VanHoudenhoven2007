@@ -13,7 +13,7 @@
         }
 
         public ISurgicalFrequencyInputContext Create(
-            PositiveInt category,
+            INullableValue<int> category,
             CodeableConcept specialty)
         {
             ISurgicalFrequencyInputContext context = null;

@@ -4,7 +4,7 @@
 
     public interface ISurgicalFrequencyInputContext
     {
-        PositiveInt Category { get; }
+        INullableValue<int> Category { get; }
 
         CodeableConcept Specialty { get; }
     }

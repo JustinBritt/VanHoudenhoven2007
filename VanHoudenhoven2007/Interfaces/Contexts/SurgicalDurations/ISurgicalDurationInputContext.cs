@@ -4,7 +4,7 @@
 
     public interface ISurgicalDurationInputContext
     {
-        PositiveInt Category { get; }
+        INullableValue<int> Category { get; }
 
         CodeableConcept Specialty { get; }
 

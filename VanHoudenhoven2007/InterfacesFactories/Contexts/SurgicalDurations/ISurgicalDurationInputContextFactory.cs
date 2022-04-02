@@ -7,7 +7,7 @@
     public interface ISurgicalDurationInputContextFactory
     {
         ISurgicalDurationInputContext Create(
-            PositiveInt category,
+            INullableValue<int> category,
             CodeableConcept specialty,
             Code statistic);
     }

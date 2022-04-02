@@ -7,7 +7,7 @@
     internal sealed class SurgicalFrequencyInputContext : ISurgicalFrequencyInputContext
     {
         public SurgicalFrequencyInputContext(
-            PositiveInt category,
+            INullableValue<int> category,
             CodeableConcept specialty)
         {
             this.Category = category;
@@ -15,7 +15,7 @@
             this.Specialty = specialty;
         }
 
-        public PositiveInt Category { get; }
+        public INullableValue<int> Category { get; }
 
         public CodeableConcept Specialty { get; }
     }

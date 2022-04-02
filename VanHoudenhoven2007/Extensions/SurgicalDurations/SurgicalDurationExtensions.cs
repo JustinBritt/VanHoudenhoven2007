@@ -8,12 +8,12 @@
     {
         public static DataType GetValue(
             this ISurgicalDuration surgicalDuration,
-            PositiveInt category,
+            INullableValue<int> category,
             Code statistic)
         {
             return statistic.Value switch
             {
-                "average" => category.Value switch
+                "average" => category.Value.Value switch
                 {
                     1 => surgicalDuration.Category1Mean,
 
@@ -34,7 +34,7 @@
                     _ => null
                 },
 
-                "std-dev" => category.Value switch
+                "std-dev" => category.Value.Value switch
                 {
                     1 => surgicalDuration.Category1StandardDeviation,
 
