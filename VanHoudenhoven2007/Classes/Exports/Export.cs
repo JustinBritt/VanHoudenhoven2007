@@ -23,58 +23,14 @@
         {
             IAbstractFactory abstractFactory = AbstractFactory.Create();
 
-            ISurgicalDuration surgicalData = abstractFactory.CreateSurgicalDurationsAbstractFactory()
+            return abstractFactory.CreateSurgicalDurationsAbstractFactory()
                 .CreateSurgicalDurationFactory(
-                specialty)
+                    specialty)
                 .Create(
-                abstractFactory.CreateDependenciesAbstractFactory().CreateDurationFactory());
-
-            return statistic.Value switch
-            {
-                "average" => category.Value switch
-                {
-                  1 => surgicalData.Category1Mean,
-
-                  2 => surgicalData.Category2Mean,
-
-                  3 => surgicalData.Category3Mean,
-
-                  4 => surgicalData.Category4Mean,
-                  
-                  5 => surgicalData.Category5Mean,
-
-                  6 => surgicalData.Category6Mean,
-
-                  7 => surgicalData.Category7Mean,
-
-                  8 => surgicalData.Category8Mean,
-
-                  _ => null
-                },
-
-                "std-dev" => category.Value switch
-                {
-                    1 => surgicalData.Category1StandardDeviation,
-
-                    2 => surgicalData.Category2StandardDeviation,
-
-                    3 => surgicalData.Category3StandardDeviation,
-
-                    4 => surgicalData.Category4StandardDeviation,
-
-                    5 => surgicalData.Category5StandardDeviation,
-
-                    6 => surgicalData.Category6StandardDeviation,
-
-                    7 => surgicalData.Category7StandardDeviation,
-
-                    8 => surgicalData.Category8StandardDeviation,
-
-                    _ => null
-                },
-
-                _ => null
-            };
+                    abstractFactory.CreateDependenciesAbstractFactory().CreateDurationFactory())
+                .GetValue(
+                    category,
+                    statistic);
         }
     }
 }
