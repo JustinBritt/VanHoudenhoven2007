@@ -1,7 +1,5 @@
 ﻿namespace VanHoudenhoven2007.Classes.Exports.SurgicalFrequencies
 {
-    using Hl7.Fhir.Model;
-
     using VanHoudenhoven2007.Extensions.SurgicalFrequencies;
     using VanHoudenhoven2007.Interfaces.Contexts.SurgicalFrequencies;
     using VanHoudenhoven2007.Interfaces.Exports.SurgicalFrequencies;
@@ -13,17 +11,18 @@
         {
         }
 
-        public INullableValue<decimal> GetSurgicalFrequency(
+        public ISurgicalFrequencyOutputContext GetSurgicalFrequency(
             IAbstractFactory abstractFactory,
             ISurgicalFrequencyInputContext surgicalFrequencyInputContext)
         {
-            return abstractFactory.CreateSurgicalFrequenciesAbstractFactory()
+            return abstractFactory.CreateContextsAbstractFactory().CreateSurgicalFrequencyOutputContextFactory().Create(
+                abstractFactory.CreateSurgicalFrequenciesAbstractFactory()
                 .CreateSurgicalFrequencyFactory(
                     surgicalFrequencyInputContext.Specialty)
                 .Create(
                     abstractFactory.CreateDependenciesAbstractFactory().CreateNullableValueFactory())
                 .GetValue(
-                    surgicalFrequencyInputContext.Category);
+                    surgicalFrequencyInputContext.Category));
         }
     }
 }
