@@ -2,7 +2,9 @@
 {
     using Hl7.Fhir.Model;
 
-    public interface ISurgicalFrequency
+    using VanHoudenhoven2007.Interfaces;
+
+    public interface ISurgicalFrequency : ISurgicalData
     {
         FhirDecimal Category1Frequency { get; }
 
