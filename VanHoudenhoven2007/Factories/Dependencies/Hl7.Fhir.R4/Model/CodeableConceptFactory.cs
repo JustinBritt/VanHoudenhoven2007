@@ -9,6 +9,7 @@
         // Codes
         private const string EarNoseThroatSurgery = "394604002";
         private const string GeneralSurgery = "394609007";
+        private const string GynecologicalSurgery = "394586005";
 
         // System
         private const string SNOMEDCT = "http://snomed.info/sct";
