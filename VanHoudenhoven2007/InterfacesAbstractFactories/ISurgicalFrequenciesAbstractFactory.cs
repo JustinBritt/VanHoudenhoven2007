@@ -1,5 +1,7 @@
 ﻿namespace VanHoudenhoven2007.InterfacesAbstractFactories
 {
+    using Hl7.Fhir.Model;
+
     using VanHoudenhoven2007.InterfacesFactories.SurgicalFrequencies;
 
     public interface ISurgicalFrequenciesAbstractFactory
@@ -19,6 +21,9 @@
         IOrthopedicSurgerySurgicalFrequencyFactory CreateOrthopedicSurgerySurgicalFrequencyFactory();
 
         IPlasticSurgerySurgicalFrequencyFactory CreatePlasticSurgerySurgicalFrequencyFactory();
+
+        ISurgicalFrequencyFactory CreateSurgicalFrequencyFactory(
+            CodeableConcept specialty);
 
         ITraumaSurgicalFrequencyFactory CreateTraumaSurgicalFrequencyFactory();
 
