@@ -18,7 +18,6 @@
 
         public DataType GetSurgicalDuration(
             PositiveInt category,
-            Parameter parameter,
             CodeableConcept specialty,
             Code statistic)
         {
