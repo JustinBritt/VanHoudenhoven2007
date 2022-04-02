@@ -14,18 +14,19 @@
         {
         }
 
-        public DataType GetSurgicalDuration(
+        public ISurgicalDurationOutputContext GetSurgicalDuration(
             IAbstractFactory abstractFactory,
             ISurgicalDurationInputContext surgicalDurationInputContext)
         {
-            return abstractFactory.CreateSurgicalDurationsAbstractFactory()
+            return abstractFactory.CreateContextsAbstractFactory().CreateSurgicalDurationOutputContextFactory().Create(
+                abstractFactory.CreateSurgicalDurationsAbstractFactory()
                 .CreateSurgicalDurationFactory(
                     surgicalDurationInputContext.Specialty)
                 .Create(
                     abstractFactory.CreateDependenciesAbstractFactory().CreateDurationFactory())
                 .GetValue(
                     surgicalDurationInputContext.Category,
-                    surgicalDurationInputContext.Statistic);
+                    surgicalDurationInputContext.Statistic));
         }
     }
 }

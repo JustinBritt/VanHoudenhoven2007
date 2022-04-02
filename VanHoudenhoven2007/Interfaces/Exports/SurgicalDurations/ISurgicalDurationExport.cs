@@ -7,7 +7,7 @@
 
     public interface ISurgicalDurationExport
     {
-        DataType GetSurgicalDuration(
+        ISurgicalDurationOutputContext GetSurgicalDuration(
             IAbstractFactory abstractFactory,
             ISurgicalDurationInputContext surgicalDurationInputContext);
     }
