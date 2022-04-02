@@ -23,48 +23,50 @@
         {
             IAbstractFactory abstractFactory = AbstractFactory.Create();
 
+            ISurgicalDurationsAbstractFactory surgicalDurationsAbstractFactory = abstractFactory.CreateSurgicalDurationsAbstractFactory();
+
             IDurationFactory durationFactory = abstractFactory.CreateDependenciesAbstractFactory().CreateDurationFactory();
 
             ISurgicalDuration surgicalData = specialty.Text switch
             {
                 // EarNoseThroatSurgery
-                "394604002" => abstractFactory.CreateSurgicalDurationsAbstractFactory().CreateEarNoseThroatSurgerySurgicalDurationFactory().Create(
+                "394604002" => surgicalDurationsAbstractFactory.CreateEarNoseThroatSurgerySurgicalDurationFactory().Create(
                     durationFactory),
 
                 // GeneralSurgery
-                "394609007" => abstractFactory.CreateSurgicalDurationsAbstractFactory().CreateGeneralSurgerySurgicalDurationFactory().Create(
+                "394609007" => surgicalDurationsAbstractFactory.CreateGeneralSurgerySurgicalDurationFactory().Create(
                     durationFactory),
 
                 // GynecologicalSurgery
-                "394586005" => abstractFactory.CreateSurgicalDurationsAbstractFactory().CreateGynecologicalSurgerySurgicalDurationFactory().Create(
+                "394586005" => surgicalDurationsAbstractFactory.CreateGynecologicalSurgerySurgicalDurationFactory().Create(
                     durationFactory),
 
                 // Neurosurgery
-                "394610002" => abstractFactory.CreateSurgicalDurationsAbstractFactory().CreateNeurosurgerySurgicalDurationFactory().Create(
+                "394610002" => surgicalDurationsAbstractFactory.CreateNeurosurgerySurgicalDurationFactory().Create(
                     durationFactory),
 
                 // Ophthalmology
-                "422191005" or "394594003" => abstractFactory.CreateSurgicalDurationsAbstractFactory().CreateOphthalmologySurgicalDurationFactory().Create(
+                "422191005" or "394594003" => surgicalDurationsAbstractFactory.CreateOphthalmologySurgicalDurationFactory().Create(
                     durationFactory),
 
                 // OralSurgery
-                "394605001" => abstractFactory.CreateSurgicalDurationsAbstractFactory().CreateOralSurgerySurgicalDurationFactory().Create(
+                "394605001" => surgicalDurationsAbstractFactory.CreateOralSurgerySurgicalDurationFactory().Create(
                     durationFactory),
 
                 // OrthopedicSurgery
-                "24241000087106" => abstractFactory.CreateSurgicalDurationsAbstractFactory().CreateOrthopedicSurgerySurgicalDurationFactory().Create(
+                "24241000087106" => surgicalDurationsAbstractFactory.CreateOrthopedicSurgerySurgicalDurationFactory().Create(
                     durationFactory),
 
                 // PlasticSurgery
-                "394611003" => abstractFactory.CreateSurgicalDurationsAbstractFactory().CreatePlasticSurgerySurgicalDurationFactory().Create(
+                "394611003" => surgicalDurationsAbstractFactory.CreatePlasticSurgerySurgicalDurationFactory().Create(
                     durationFactory),
 
                 // Trauma
-                "394801008" => abstractFactory.CreateSurgicalDurationsAbstractFactory().CreateTraumaSurgicalDurationFactory().Create(
+                "394801008" => surgicalDurationsAbstractFactory.CreateTraumaSurgicalDurationFactory().Create(
                     durationFactory),
 
                 // Urology
-                "394612005" => abstractFactory.CreateSurgicalDurationsAbstractFactory().CreateUrologySurgicalDurationFactory().Create(
+                "394612005" => surgicalDurationsAbstractFactory.CreateUrologySurgicalDurationFactory().Create(
                     durationFactory),
 
                 _ => null
