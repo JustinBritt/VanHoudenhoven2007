@@ -23,11 +23,11 @@
         {
             IAbstractFactory abstractFactory = AbstractFactory.Create();
 
-            ISurgicalDurationsAbstractFactory surgicalDurationsAbstractFactory = abstractFactory.CreateSurgicalDurationsAbstractFactory();
-
-            IDurationFactory durationFactory = abstractFactory.CreateDependenciesAbstractFactory().CreateDurationFactory();
-
-            ISurgicalDuration surgicalData = surgicalDurationsAbstractFactory.CreateSurgicalDurationFactory(specialty).Create(durationFactory);
+            ISurgicalDuration surgicalData = abstractFactory.CreateSurgicalDurationsAbstractFactory()
+                .CreateSurgicalDurationFactory(
+                specialty)
+                .Create(
+                abstractFactory.CreateDependenciesAbstractFactory().CreateDurationFactory());
 
             return statistic.Value switch
             {
