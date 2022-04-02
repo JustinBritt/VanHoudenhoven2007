@@ -2,9 +2,7 @@
 {
     using Hl7.Fhir.Model;
 
-    using VanHoudenhoven2007.Interfaces;
-
-    public interface ISurgicalDuration : ISurgicalData
+    public interface ISurgicalDuration
     {
         Duration Category1Mean { get; }
 
