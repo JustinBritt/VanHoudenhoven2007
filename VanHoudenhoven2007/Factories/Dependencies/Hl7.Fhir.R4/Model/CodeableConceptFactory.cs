@@ -52,5 +52,12 @@
                 code: GeneralSurgery,
                 system: SNOMEDCT);
         }
+
+        public CodeableConcept CreateGynecologicalSurgery()
+        {
+            return this.Create(
+                code: GynecologicalSurgery,
+                system: SNOMEDCT);
+        }
     }
 }
