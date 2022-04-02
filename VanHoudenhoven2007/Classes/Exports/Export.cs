@@ -4,6 +4,7 @@
 
     using VanHoudenhoven2007.AbstractFactories;
     using VanHoudenhoven2007.Interfaces.Exports;
+    using VanHoudenhoven2007.Interfaces;
     using VanHoudenhoven2007.Interfaces.SurgicalDurations;
     using VanHoudenhoven2007.InterfacesAbstractFactories;
     using VanHoudenhoven2007.InterfacesFactories.Dependencies.Hl7.Fhir.R4.Model;
