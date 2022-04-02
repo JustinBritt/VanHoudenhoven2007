@@ -6,7 +6,7 @@
 
     public static class SurgicalDurationExtensions
     {
-        public static DataType GetValue(
+        public static Duration GetValue(
             this ISurgicalDuration surgicalDuration,
             INullableValue<int> category,
             Code statistic)
