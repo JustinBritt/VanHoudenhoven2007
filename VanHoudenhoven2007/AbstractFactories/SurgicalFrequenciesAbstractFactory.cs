@@ -154,35 +154,25 @@
             {
                 factory = specialty.Coding[0].Code switch
                 {
-                    // EarNoseThroatSurgery
-                    "394604002" => this.CreateEarNoseThroatSurgerySurgicalFrequencyFactory(),
+                    EarNoseThroatSurgery => this.CreateEarNoseThroatSurgerySurgicalFrequencyFactory(),
 
-                    // GeneralSurgery
-                    "394609007" => this.CreateGeneralSurgerySurgicalFrequencyFactory(),
+                    GeneralSurgery => this.CreateGeneralSurgerySurgicalFrequencyFactory(),
 
-                    // GynecologicalSurgery
-                    "394586005" => this.CreateGynecologicalSurgerySurgicalFrequencyFactory(),
+                    GynecologicalSurgery => this.CreateGynecologicalSurgerySurgicalFrequencyFactory(),
 
-                    // Neurosurgery
-                    "394610002" => this.CreateNeurosurgerySurgicalFrequencyFactory(),
+                    Neurosurgery => this.CreateNeurosurgerySurgicalFrequencyFactory(),
 
-                    // Ophthalmology
-                    "422191005" or "394594003" => this.CreateOphthalmologySurgicalFrequencyFactory(),
+                    OphthalmicSurgery or Ophthalmology => this.CreateOphthalmologySurgicalFrequencyFactory(),
 
-                    // OralSurgery
-                    "394605001" => this.CreateOralSurgerySurgicalFrequencyFactory(),
+                    OralSurgery => this.CreateOralSurgerySurgicalFrequencyFactory(),
 
-                    // OrthopedicSurgery
-                    "24241000087106" => this.CreateOrthopedicSurgerySurgicalFrequencyFactory(),
+                    OrthopedicSurgery => this.CreateOrthopedicSurgerySurgicalFrequencyFactory(),
 
-                    // PlasticSurgery
-                    "394611003" => this.CreatePlasticSurgerySurgicalFrequencyFactory(),
+                    PlasticSurgery => this.CreatePlasticSurgerySurgicalFrequencyFactory(),
 
-                    // Trauma
-                    "394801008" => this.CreateTraumaSurgicalFrequencyFactory(),
+                    Trauma => this.CreateTraumaSurgicalFrequencyFactory(),
 
-                    // Urology
-                    "394612005" => this.CreateUrologySurgicalFrequencyFactory(),
+                    Urology => this.CreateUrologySurgicalFrequencyFactory(),
 
                     _ => null
                 };
