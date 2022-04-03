@@ -16,7 +16,7 @@
         {
             return statistic.Value switch
             {
-                "average" => category.Value.Value switch
+                average => category.Value.Value switch
                 {
                     1 => surgicalDuration.Category1Mean,
 
@@ -37,7 +37,7 @@
                     _ => null
                 },
 
-                "std-dev" => category.Value.Value switch
+                stddev => category.Value.Value switch
                 {
                     1 => surgicalDuration.Category1StandardDeviation,
 
