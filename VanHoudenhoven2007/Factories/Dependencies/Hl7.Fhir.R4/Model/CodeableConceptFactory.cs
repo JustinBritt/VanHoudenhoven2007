@@ -67,5 +67,12 @@
                 code: GynecologicalSurgery,
                 system: SNOMEDCT);
         }
+
+        public CodeableConcept CreateNeurosurgery()
+        {
+            return this.Create(
+                code: Neurosurgery,
+                system: SNOMEDCT);
+        }
     }
 }
