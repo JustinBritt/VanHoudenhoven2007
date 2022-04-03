@@ -154,35 +154,25 @@
             {
                 factory = specialty.Coding[0].Code switch
                 {
-                    // EarNoseThroatSurgery
-                    "394604002" => this.CreateEarNoseThroatSurgerySurgicalDurationFactory(),
+                    EarNoseThroatSurgery => this.CreateEarNoseThroatSurgerySurgicalDurationFactory(),
 
-                    // GeneralSurgery
-                    "394609007" => this.CreateGeneralSurgerySurgicalDurationFactory(),
+                    GeneralSurgery => this.CreateGeneralSurgerySurgicalDurationFactory(),
 
-                    // GynecologicalSurgery
-                    "394586005" => this.CreateGynecologicalSurgerySurgicalDurationFactory(),
+                    GynecologicalSurgery => this.CreateGynecologicalSurgerySurgicalDurationFactory(),
 
-                    // Neurosurgery
-                    "394610002" => this.CreateNeurosurgerySurgicalDurationFactory(),
+                    Neurosurgery => this.CreateNeurosurgerySurgicalDurationFactory(),
 
-                    // Ophthalmology
-                    "422191005" or "394594003" => this.CreateOphthalmologySurgicalDurationFactory(),
+                    OphthalmicSurgery or Ophthalmology => this.CreateOphthalmologySurgicalDurationFactory(),
 
-                    // OralSurgery
-                    "394605001" => this.CreateOralSurgerySurgicalDurationFactory(),
+                    OralSurgery => this.CreateOralSurgerySurgicalDurationFactory(),
 
-                    // OrthopedicSurgery
-                    "24241000087106" => this.CreateOrthopedicSurgerySurgicalDurationFactory(),
+                    OrthopedicSurgery => this.CreateOrthopedicSurgerySurgicalDurationFactory(),
 
-                    // PlasticSurgery
-                    "394611003" => this.CreatePlasticSurgerySurgicalDurationFactory(),
+                    PlasticSurgery => this.CreatePlasticSurgerySurgicalDurationFactory(),
 
-                    // Trauma
-                    "394801008" => this.CreateTraumaSurgicalDurationFactory(),
+                    Trauma => this.CreateTraumaSurgicalDurationFactory(),
 
-                    // Urology
-                    "394612005" => this.CreateUrologySurgicalDurationFactory(),
+                    Urology => this.CreateUrologySurgicalDurationFactory(),
 
                     _ => null
                 };
