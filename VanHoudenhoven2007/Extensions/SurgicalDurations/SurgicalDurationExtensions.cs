@@ -9,7 +9,7 @@
         public static Duration GetValue(
             this ISurgicalDuration surgicalDuration,
             INullableValue<int> category,
-            Code statistic)
+            IValue<string> statistic)
         {
             return statistic.Value switch
             {

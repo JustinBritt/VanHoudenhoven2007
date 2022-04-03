@@ -9,7 +9,7 @@
         public SurgicalDurationInputContext(
             INullableValue<int> category,
             CodeableConcept specialty,
-            Code statistic)
+            IValue<string> statistic)
         {
             this.Category = category;
 
@@ -22,6 +22,6 @@
 
         public CodeableConcept Specialty { get; }
 
-        public Code Statistic { get; }
+        public IValue<string> Statistic { get; }
     }
 }

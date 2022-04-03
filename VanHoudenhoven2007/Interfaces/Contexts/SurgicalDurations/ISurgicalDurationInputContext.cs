@@ -8,6 +8,6 @@
 
         CodeableConcept Specialty { get; }
 
-        Code Statistic { get; }
+        IValue<string> Statistic { get; }
     }
 }

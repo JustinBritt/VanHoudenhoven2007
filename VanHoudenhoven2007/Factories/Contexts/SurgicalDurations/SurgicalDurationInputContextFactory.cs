@@ -15,7 +15,7 @@
         public ISurgicalDurationInputContext Create(
             INullableValue<int> category,
             CodeableConcept specialty,
-            Code statistic)
+            IValue<string> statistic)
         {
             ISurgicalDurationInputContext context = null;
 
