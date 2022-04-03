@@ -102,5 +102,12 @@
                 code: OrthopedicSurgery,
                 system: SNOMEDCT);
         }
+
+        public CodeableConcept CreatePlasticSurgery()
+        {
+            return this.Create(
+                code: PlasticSurgery,
+                system: SNOMEDCT);
+        }
     }
 }
