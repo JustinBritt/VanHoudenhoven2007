@@ -74,5 +74,12 @@
                 code: Neurosurgery,
                 system: SNOMEDCT);
         }
+
+        public CodeableConcept CreateOphthalmicSurgery()
+        {
+            return this.Create(
+                code: OphthalmicSurgery,
+                system: SNOMEDCT);
+        }
     }
 }
