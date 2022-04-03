@@ -95,5 +95,12 @@
                 code: OralSurgery,
                 system: SNOMEDCT);
         }
+
+        public CodeableConcept CreateOrthopedicSurgery()
+        {
+            return this.Create(
+                code: OrthopedicSurgery,
+                system: SNOMEDCT);
+        }
     }
 }
