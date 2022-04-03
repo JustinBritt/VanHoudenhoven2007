@@ -8,6 +8,19 @@
 
     internal sealed class SurgicalDurationsAbstractFactory : ISurgicalDurationsAbstractFactory
     {
+        // Codes
+        private const string EarNoseThroatSurgery = "394604002";
+        private const string GeneralSurgery = "394609007";
+        private const string GynecologicalSurgery = "394586005";
+        private const string Neurosurgery = "394610002";
+        private const string OphthalmicSurgery = "422191005";
+        private const string Ophthalmology = "394594003";
+        private const string OralSurgery = "394605001";
+        private const string OrthopedicSurgery = "24241000087106";
+        private const string PlasticSurgery = "394611003";
+        private const string Trauma = "394801008";
+        private const string Urology = "394612005";
+
         public SurgicalDurationsAbstractFactory()
         {
         }
