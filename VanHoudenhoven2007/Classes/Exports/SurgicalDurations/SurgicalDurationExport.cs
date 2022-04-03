@@ -6,7 +6,7 @@
     using VanHoudenhoven2007.Interfaces.Exports.SurgicalDurations;
     using VanHoudenhoven2007.InterfacesAbstractFactories;
 
-    public sealed class SurgicalDurationExport : ISurgicalDurationExport
+    internal sealed class SurgicalDurationExport : ISurgicalDurationExport
     {
         public SurgicalDurationExport()
         {

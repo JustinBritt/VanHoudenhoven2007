@@ -5,7 +5,7 @@
     using VanHoudenhoven2007.Interfaces.SurgicalFrequencies;
     using VanHoudenhoven2007.InterfacesFactories.Dependencies.Hl7.Fhir.R4.Model;
 
-    public sealed record OralSurgerySurgicalFrequency : IOralSurgerySurgicalFrequency
+    internal sealed record OralSurgerySurgicalFrequency : IOralSurgerySurgicalFrequency
     {
         public OralSurgerySurgicalFrequency(
             INullableValueFactory nullableValueFactory)

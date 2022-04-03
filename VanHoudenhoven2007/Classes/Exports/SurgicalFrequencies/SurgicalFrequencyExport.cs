@@ -5,7 +5,7 @@
     using VanHoudenhoven2007.Interfaces.Exports.SurgicalFrequencies;
     using VanHoudenhoven2007.InterfacesAbstractFactories;
 
-    public sealed class SurgicalFrequencyExport : ISurgicalFrequencyExport
+    internal sealed class SurgicalFrequencyExport : ISurgicalFrequencyExport
     {
         public SurgicalFrequencyExport()
         {

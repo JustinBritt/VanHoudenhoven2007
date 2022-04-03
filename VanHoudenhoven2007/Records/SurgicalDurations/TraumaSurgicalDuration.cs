@@ -5,7 +5,7 @@
     using VanHoudenhoven2007.Interfaces.SurgicalDurations;
     using VanHoudenhoven2007.InterfacesFactories.Dependencies.Hl7.Fhir.R4.Model;
 
-    public sealed record TraumaSurgicalDuration : ITraumaSurgicalDuration
+    internal sealed record TraumaSurgicalDuration : ITraumaSurgicalDuration
     {
         private const string minutes = "min";
         private const string unitsofmeasure = "http://unitsofmeasure.org";
