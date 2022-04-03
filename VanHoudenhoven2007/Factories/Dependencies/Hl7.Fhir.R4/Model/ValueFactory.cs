@@ -29,5 +29,17 @@
 
             return instance;
         }
+
+        public IValue<string> CreateAverage()
+        {
+            return this.Create(
+                average);
+        }
+
+        public IValue<string> CreateStdDev()
+        {
+            return this.Create(
+                stddev);
+        }
     }
 }

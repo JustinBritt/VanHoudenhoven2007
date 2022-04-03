@@ -6,5 +6,9 @@
     {
         IValue<string> Create(
             string value);
+
+        IValue<string> CreateAverage();
+
+        IValue<string> CreateStdDev();
     }
 }
