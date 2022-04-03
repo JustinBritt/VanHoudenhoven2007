@@ -116,5 +116,12 @@
                 code: Trauma,
                 system: SNOMEDCT);
         }
+
+        public CodeableConcept CreateUrology()
+        {
+            return this.Create(
+                code: Urology,
+                system: SNOMEDCT);
+        }
     }
 }
