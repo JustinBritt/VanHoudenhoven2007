@@ -6,6 +6,9 @@
 
     internal sealed class ValueFactory : IValueFactory
     {
+        private const string average = "average";
+        private const string stddev = "std-dev";
+
         public ValueFactory()
         {
         }
