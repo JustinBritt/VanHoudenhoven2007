@@ -88,5 +88,12 @@
                 code: Ophthalmology,
                 system: SNOMEDCT);
         }
+
+        public CodeableConcept CreateOralSurgery()
+        {
+            return this.Create(
+                code: OralSurgery,
+                system: SNOMEDCT);
+        }
     }
 }
