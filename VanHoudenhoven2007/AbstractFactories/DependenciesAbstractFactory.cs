@@ -10,6 +10,21 @@
         {
         }
 
+        public ICodeableConceptFactory CreateCodeableConceptFactory()
+        {
+            ICodeableConceptFactory factory = null;
+
+            try
+            {
+                factory = new CodeableConceptFactory();
+            }
+            finally
+            {
+            }
+
+            return factory;
+        }
+
         public IDurationFactory CreateDurationFactory()
         {
             IDurationFactory factory = null;

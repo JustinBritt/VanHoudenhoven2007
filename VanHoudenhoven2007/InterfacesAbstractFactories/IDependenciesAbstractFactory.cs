@@ -4,6 +4,8 @@
 
     public interface IDependenciesAbstractFactory
     {
+        ICodeableConceptFactory CreateCodeableConceptFactory();
+
         IDurationFactory CreateDurationFactory();
 
         INullableValueFactory CreateNullableValueFactory();
