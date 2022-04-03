@@ -9,5 +9,7 @@
         IDurationFactory CreateDurationFactory();
 
         INullableValueFactory CreateNullableValueFactory();
+
+        IValueFactory CreateValueFactory();
     }
 }
