@@ -81,5 +81,12 @@
                 code: OphthalmicSurgery,
                 system: SNOMEDCT);
         }
+
+        public CodeableConcept CreateOphthalmology()
+        {
+            return this.Create(
+                code: Ophthalmology,
+                system: SNOMEDCT);
+        }
     }
 }
