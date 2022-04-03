@@ -31,7 +31,7 @@
             string system,
             string text = null)
         {
-            CodeableConcept codeableConcept;
+            CodeableConcept codeableConcept = null;
 
             try
             {

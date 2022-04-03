@@ -42,7 +42,7 @@
             string unit,
             decimal value)
         {
-            Duration duration;
+            Duration duration = null;
 
             try
             {
