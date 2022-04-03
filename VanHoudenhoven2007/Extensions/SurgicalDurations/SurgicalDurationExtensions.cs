@@ -6,6 +6,9 @@
 
     public static class SurgicalDurationExtensions
     {
+        private const string average = "average";
+        private const string stddev = "std-dev";
+
         public static Duration GetValue(
             this ISurgicalDuration surgicalDuration,
             INullableValue<int> category,
