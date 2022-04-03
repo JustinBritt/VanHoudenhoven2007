@@ -109,5 +109,12 @@
                 code: PlasticSurgery,
                 system: SNOMEDCT);
         }
+
+        public CodeableConcept CreateTrauma()
+        {
+            return this.Create(
+                code: Trauma,
+                system: SNOMEDCT);
+        }
     }
 }
