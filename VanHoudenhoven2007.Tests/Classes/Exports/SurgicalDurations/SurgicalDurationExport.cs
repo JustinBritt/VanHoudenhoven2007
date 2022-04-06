@@ -14,6 +14,8 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
     {
         private const string minutes = "min";
 
+        private const string skew = "skew";
+
         [TestMethod]
         public void TestMethod1()
         {
