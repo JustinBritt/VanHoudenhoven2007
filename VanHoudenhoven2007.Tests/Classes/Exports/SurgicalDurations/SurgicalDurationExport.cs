@@ -12,6 +12,8 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
     [TestClass]
     public sealed class SurgicalDurationExport
     {
+        private const string minutes = "min";
+
         [TestMethod]
         public void TestMethod1()
         {
