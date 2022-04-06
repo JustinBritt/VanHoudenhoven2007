@@ -12,4 +12,8 @@
     <PackageReference Include="MSTest.TestFramework" Version="2.2.7" />
     <PackageReference Include="coverlet.collector" Version="3.1.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VanHoudenhoven2007\VanHoudenhoven2007.csproj" />
+  </ItemGroup>
 </Project>
