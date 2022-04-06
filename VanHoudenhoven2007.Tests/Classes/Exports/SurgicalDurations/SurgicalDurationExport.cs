@@ -17,8 +17,33 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         private const string skew = "skew";
 
         [TestMethod]
-        public void TestMethod1()
+        public void Category1EarNoseThroatSurgeryAverage()
         {
+            // Arrange
+            IAbstractFactory abstractFactory = AbstractFactory.Create();
+
+            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
+
+            ISurgicalDurationInputContext surgicalDurationInputContext = abstractFactory.CreateContextsAbstractFactory().CreateSurgicalDurationInputContextFactory().Create(
+                category: dependenciesAbstractFactory.CreateNullableValueFactory().Create<int>(1),
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().CreateEarNoseThroatSurgery(),
+                statistic: dependenciesAbstractFactory.CreateValueFactory().CreateAverage());
+
+            ISurgicalDurationExport surgicalDurationExport = abstractFactory.CreateExportsAbstractFactory().CreateSurgicalDurationExportFactory().Create();
+
+            // Act
+            ISurgicalDurationOutputContext surgicalDurationOutputContext = surgicalDurationExport.GetSurgicalDuration(
+                abstractFactory,
+                surgicalDurationInputContext);
+
+            // Assert
+            Assert.AreEqual(
+                expected: 102m,
+                actual: surgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
     }
 }
