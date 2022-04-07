@@ -415,5 +415,44 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
                     actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
             }
         }
+
+        [TestMethod]
+        public void NeurosurgeryStdDev()
+        {
+            // Arrange
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+
+            int numberCategories = 8;
+
+            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
+            data[1] = 165m;
+            data[2] = 41m;
+            data[3] = 62m;
+            data[4] = 62m;
+            data[5] = 73m;
+            data[6] = 177m;
+            data[7] = 0m;
+            data[8] = 0m;
+
+            for (int i = 1; i <= numberCategories; i = i + 1)
+            {
+                // Act
+                builder
+                     .WithCategory(
+                         category: i)
+                     .WithNeurosurgery()
+                     .WithStdDev()
+                     .Build();
+
+                // Assert
+                Assert.AreEqual(
+                    expected: data[i],
+                    actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+
+                Assert.AreEqual(
+                    expected: minutes,
+                    actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+            }
+        }
     }
 }
