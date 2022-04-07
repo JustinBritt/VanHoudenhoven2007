@@ -26,6 +26,8 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
 
         ISurgicalDurationExportTestBuilder WithEarNoseThroatSurgery();
 
+        ISurgicalDurationExportTestBuilder WithGynecologicalSurgery()
+
         ISurgicalDurationExportTestBuilder WithStdDev();
     }
 
@@ -104,6 +106,13 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         public ISurgicalDurationExportTestBuilder WithGeneralSurgery()
         {
             this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateGeneralSurgery();
+
+            return this;
+        }
+
+        public ISurgicalDurationExportTestBuilder WithGynecologicalSurgery()
+        {
+            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateGynecologicalSurgery();
 
             return this;
         }
