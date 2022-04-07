@@ -30,7 +30,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
 
         ISurgicalDurationExportTestBuilder WithGynecologicalSurgery();
 
-        ISurgicalDurationExportTestBuilder WithNeurosurgery()
+        ISurgicalDurationExportTestBuilder WithNeurosurgery();
 
         ISurgicalDurationExportTestBuilder WithStdDev();
     }
