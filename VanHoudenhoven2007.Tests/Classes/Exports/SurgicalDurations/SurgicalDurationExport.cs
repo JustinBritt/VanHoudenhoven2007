@@ -105,6 +105,13 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
 
             return this;
         }
+
+        public ISurgicalDurationExportTestBuilder WithStdDev()
+        {
+            this.Statistic = this.DependenciesAbstractFactory.CreateValueFactory().CreateStdDev();
+
+            return this;
+        }
     }
 
     [TestClass]
