@@ -24,7 +24,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         ISurgicalDurationExportTestBuilder WithCategory(
             int category);
 
-        ISurgicalDurationExportTestBuilder WithEarNoseThroat();
+        ISurgicalDurationExportTestBuilder WithEarNoseThroatSurgery();
     }
 
     public sealed class SurgicalDurationExportTestBuilder : ISurgicalDurationExportTestBuilder
@@ -92,7 +92,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
             return this;
         }
 
-        public ISurgicalDurationExportTestBuilder WithEarNoseThroat()
+        public ISurgicalDurationExportTestBuilder WithEarNoseThroatSurgery()
         {
             this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateEarNoseThroatSurgery();
 
@@ -124,7 +124,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
             builder
                  .WithCategory(
                      category: 1)
-                 .WithEarNoseThroat()
+                 .WithEarNoseThroatSurgery()
                  .WithAverage()
                  .Build();
 
@@ -148,7 +148,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
             builder
                 .WithCategory(
                     category: 2)
-                .WithEarNoseThroat()
+                .WithEarNoseThroatSurgery()
                 .WithAverage()
                 .Build();
             
@@ -172,7 +172,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
             builder
                 .WithCategory(
                     category: 3)
-                .WithEarNoseThroat()
+                .WithEarNoseThroatSurgery()
                 .WithAverage()
                 .Build();
 
@@ -196,7 +196,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
             builder
                 .WithCategory(
                     category: 4)
-                .WithEarNoseThroat()
+                .WithEarNoseThroatSurgery()
                 .WithAverage()
                 .Build();
 
@@ -220,7 +220,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
             builder
                 .WithCategory(
                     category: 5)
-                .WithEarNoseThroat()
+                .WithEarNoseThroatSurgery()
                 .WithAverage()
                 .Build();
 
@@ -244,7 +244,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
             builder
                 .WithCategory(
                     category: 6)
-                .WithEarNoseThroat()
+                .WithEarNoseThroatSurgery()
                 .WithAverage()
                 .Build();
 
@@ -268,7 +268,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
             builder
                 .WithCategory(
                     category: 7)
-                .WithEarNoseThroat()
+                .WithEarNoseThroatSurgery()
                 .WithAverage()
                 .Build();
 
@@ -292,7 +292,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
             builder
                 .WithCategory(
                     category: 8)
-                .WithEarNoseThroat()
+                .WithEarNoseThroatSurgery()
                 .WithAverage()
                 .Build();
 
