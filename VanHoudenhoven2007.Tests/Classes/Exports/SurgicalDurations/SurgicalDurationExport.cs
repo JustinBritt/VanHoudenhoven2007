@@ -26,7 +26,9 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
 
         ISurgicalDurationExportTestBuilder WithEarNoseThroatSurgery();
 
-        ISurgicalDurationExportTestBuilder WithGynecologicalSurgery()
+        ISurgicalDurationExportTestBuilder WithGeneralSurgery();
+
+        ISurgicalDurationExportTestBuilder WithGynecologicalSurgery();
 
         ISurgicalDurationExportTestBuilder WithStdDev();
     }
