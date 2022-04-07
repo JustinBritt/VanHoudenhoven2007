@@ -135,6 +135,45 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         private const string skew = "skew";
 
         [TestMethod]
+        public void EarNoseThroatSurgeryAverage()
+        {
+            // Arrange
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+
+            int numberCategories = 8;
+
+            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
+            data[1] = 102m;
+            data[2] = 40m;
+            data[3] = 65m;
+            data[4] = 102m;
+            data[5] = 127m;
+            data[6] = 182m;
+            data[7] = 254m;
+            data[8] = 549m;
+
+            for (int i = 1; i <= numberCategories; i = i + 1)
+            {
+                // Act
+                builder
+                     .WithCategory(
+                         category: i)
+                     .WithEarNoseThroatSurgery()
+                     .WithAverage()
+                     .Build();
+
+                // Assert
+                Assert.AreEqual(
+                    expected: data[i],
+                    actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+
+                Assert.AreEqual(
+                    expected: minutes,
+                    actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+            }
+        }
+
+        [TestMethod]
         public void Category1EarNoseThroatSurgeryAverage()
         {
             // Arrange
