@@ -17,7 +17,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
 
         ISurgicalDurationOutputContext SurgicalDurationOutputContext { get; }
 
-        ISurgicalDurationExportTestBuilder Build();
+        void Build();
 
         ISurgicalDurationExportTestBuilder WithAverage();
 
@@ -69,14 +69,12 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
                 this.SurgicalDurationInputContext);
         }
 
-        public ISurgicalDurationExportTestBuilder Build()
+        public void Build()
         {
             this.Build(
                 category: this.Category,
                 specialty: this.Specialty,
                 statistic: this.Statistic);
-
-            return this;
         }
 
         public ISurgicalDurationExportTestBuilder WithAverage()
