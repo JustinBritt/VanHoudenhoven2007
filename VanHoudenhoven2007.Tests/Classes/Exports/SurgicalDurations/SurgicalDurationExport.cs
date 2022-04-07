@@ -340,6 +340,30 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         }
 
         [TestMethod]
+        public void Category5EarNoseThroatSurgeryStdDev()
+        {
+            // Arrange
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+
+            // Act
+            builder
+                .WithCategory(
+                    category: 5)
+                .WithEarNoseThroatSurgery()
+                .WithStdDev()
+                .Build();
+
+            // Assert
+            Assert.AreEqual(
+                expected: 32m,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+        }
+
+        [TestMethod]
         public void Category6EarNoseThroatSurgeryAverage()
         {
             // Arrange
@@ -356,6 +380,30 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
             // Assert
             Assert.AreEqual(
                 expected: 182m,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+        }
+
+        [TestMethod]
+        public void Category6EarNoseThroatSurgeryStdDev()
+        {
+            // Arrange
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+
+            // Act
+            builder
+                .WithCategory(
+                    category: 6)
+                .WithEarNoseThroatSurgery()
+                .WithStdDev()
+                .Build();
+
+            // Assert
+            Assert.AreEqual(
+                expected: 65m,
                 actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
 
             Assert.AreEqual(
@@ -388,10 +436,34 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         }
 
         [TestMethod]
+        public void Category7EarNoseThroatSurgeryStdDev()
+        {
+            // Arrange
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+
+            // Act
+            builder
+                .WithCategory(
+                    category: 7)
+                .WithEarNoseThroatSurgery()
+                .WithStdDev()
+                .Build();
+
+            // Assert
+            Assert.AreEqual(
+                expected: 75m,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+        }
+
+        [TestMethod]
         public void Category8EarNoseThroatSurgeryAverage()
         {
             // Arrange
-            SurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
             // Act
             builder
@@ -404,6 +476,30 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
             // Assert
             Assert.AreEqual(
                 expected: 549m,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+        }
+
+        [TestMethod]
+        public void Category8EarNoseThroatSurgeryStdDev()
+        {
+            // Arrange
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+
+            // Act
+            builder
+                .WithCategory(
+                    category: 8)
+                .WithEarNoseThroatSurgery()
+                .WithStdDev()
+                .Build();
+
+            // Assert
+            Assert.AreEqual(
+                expected: 203m,
                 actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
 
             Assert.AreEqual(
