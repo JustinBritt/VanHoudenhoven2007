@@ -17,14 +17,14 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
 
         ISurgicalDurationOutputContext SurgicalDurationOutputContext { get; }
 
-        void Build();
+        ISurgicalDurationExportTestBuilder Build();
 
-        void WithAverage();
+        ISurgicalDurationExportTestBuilder WithAverage();
 
-        void WithCategory(
+        ISurgicalDurationExportTestBuilder WithCategory(
             int category);
 
-        void WithEarNoseThroat();
+        ISurgicalDurationExportTestBuilder WithEarNoseThroat();
     }
 
     public sealed class SurgicalDurationExportTestBuilder : ISurgicalDurationExportTestBuilder
@@ -69,28 +69,36 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
                 this.SurgicalDurationInputContext);
         }
 
-        public void Build()
+        public ISurgicalDurationExportTestBuilder Build()
         {
             this.Build(
                 category: this.Category,
                 specialty: this.Specialty,
                 statistic: this.Statistic);
+
+            return this;
         }
 
-        public void WithAverage()
+        public ISurgicalDurationExportTestBuilder WithAverage()
         {
             this.Statistic = this.DependenciesAbstractFactory.CreateValueFactory().CreateAverage();
+
+            return this;
         }
 
-        public void WithCategory(
+        public ISurgicalDurationExportTestBuilder WithCategory(
             int category)
         {
             this.Category = this.DependenciesAbstractFactory.CreateNullableValueFactory().Create<int>(category);
+
+            return this;
         }
 
-        public void WithEarNoseThroat()
+        public ISurgicalDurationExportTestBuilder WithEarNoseThroat()
         {
             this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateEarNoseThroatSurgery();
+
+            return this;
         }
     }
 
@@ -108,11 +116,12 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
             ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
             // Act
-            builder.WithCategory(
-                category: 1);
-            builder.WithEarNoseThroat();
-            builder.WithAverage();
-            builder.Build();
+            builder
+                 .WithCategory(
+                     category: 1)
+                 .WithEarNoseThroat()
+                 .WithAverage()
+                 .Build();
 
             // Assert
             Assert.AreEqual(
@@ -131,12 +140,13 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
             SurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
             // Act
-            builder.WithCategory(
-                category: 2);
-            builder.WithEarNoseThroat();
-            builder.WithAverage();
-            builder.Build();
-
+            builder
+                .WithCategory(
+                    category: 2)
+                .WithEarNoseThroat()
+                .WithAverage()
+                .Build();
+            
             // Assert
             Assert.AreEqual(
                 expected: 40m,
@@ -154,11 +164,12 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
             SurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
             // Act
-            builder.WithCategory(
-                category: 3);
-            builder.WithEarNoseThroat();
-            builder.WithAverage();
-            builder.Build();
+            builder
+                .WithCategory(
+                    category: 3)
+                .WithEarNoseThroat()
+                .WithAverage()
+                .Build();
 
             // Assert
             Assert.AreEqual(
