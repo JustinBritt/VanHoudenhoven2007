@@ -25,6 +25,8 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
             int category);
 
         ISurgicalDurationExportTestBuilder WithEarNoseThroatSurgery();
+
+        ISurgicalDurationExportTestBuilder WithStdDev();
     }
 
     public sealed class SurgicalDurationExportTestBuilder : ISurgicalDurationExportTestBuilder
