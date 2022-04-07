@@ -98,6 +98,13 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
 
             return this;
         }
+
+        public ISurgicalDurationExportTestBuilder WithGeneralSurgery()
+        {
+            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateGeneralSurgery();
+
+            return this;
+        }
     }
 
     [TestClass]
