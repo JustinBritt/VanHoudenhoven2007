@@ -637,5 +637,44 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
                     actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
             }
         }
+
+        [TestMethod]
+        public void PlasticSurgeryAverage()
+        {
+            // Arrange
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+
+            int numberCategories = 8;
+
+            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
+            data[1] = 119m;
+            data[2] = 63m;
+            data[3] = 82m;
+            data[4] = 112m;
+            data[5] = 139m;
+            data[6] = 187m;
+            data[7] = 432m;
+            data[8] = 0m;
+
+            for (int i = 1; i <= numberCategories; i = i + 1)
+            {
+                // Act
+                builder
+                     .WithCategory(
+                         category: i)
+                     .WithPlasticSurgery()
+                     .WithAverage()
+                     .Build();
+
+                // Assert
+                Assert.AreEqual(
+                    expected: data[i],
+                    actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+
+                Assert.AreEqual(
+                    expected: minutes,
+                    actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+            }
+        }
     }
 }
