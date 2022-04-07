@@ -292,6 +292,30 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         }
 
         [TestMethod]
+        public void Category4EarNoseThroatSurgeryStdDev()
+        {
+            // Arrange
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+
+            // Act
+            builder
+                .WithCategory(
+                    category: 4)
+                .WithEarNoseThroatSurgery()
+                .WithStdDev()
+                .Build();
+
+            // Assert
+            Assert.AreEqual(
+                expected: 35m,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+        }
+
+        [TestMethod]
         public void Category5EarNoseThroatSurgeryAverage()
         {
             // Arrange
