@@ -328,5 +328,44 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
                     actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
             }
         }
+
+        [TestMethod]
+        public void GynecologicalSurgeryStdDev()
+        {
+            // Arrange
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+
+            int numberCategories = 8;
+
+            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
+            data[1] = 65m;
+            data[2] = 19m;
+            data[3] = 33m;
+            data[4] = 32m;
+            data[5] = 43m;
+            data[6] = 41m;
+            data[7] = 82m;
+            data[8] = 0m;
+
+            for (int i = 1; i <= numberCategories; i = i + 1)
+            {
+                // Act
+                builder
+                     .WithCategory(
+                         category: i)
+                     .WithGynecologicalSurgery()
+                     .WithStdDev()
+                     .Build();
+
+                // Assert
+                Assert.AreEqual(
+                    expected: data[i],
+                    actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+
+                Assert.AreEqual(
+                    expected: minutes,
+                    actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+            }
+        }
     }
 }
