@@ -137,7 +137,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         public void Category2EarNoseThroatSurgeryAverage()
         {
             // Arrange
-            SurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
             // Act
             builder
@@ -161,7 +161,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         public void Category3EarNoseThroatSurgeryAverage()
         {
             // Arrange
-            SurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
             // Act
             builder
@@ -185,7 +185,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         public void Category4EarNoseThroatSurgeryAverage()
         {
             // Arrange
-            SurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
             // Act
             builder
@@ -209,7 +209,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         public void Category5EarNoseThroatSurgeryAverage()
         {
             // Arrange
-            SurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
             // Act
             builder
@@ -233,7 +233,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         public void Category6EarNoseThroatSurgeryAverage()
         {
             // Arrange
-            SurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
             // Act
             builder
@@ -257,7 +257,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         public void Category7EarNoseThroatSurgeryAverage()
         {
             // Arrange
-            SurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
             // Act
             builder
