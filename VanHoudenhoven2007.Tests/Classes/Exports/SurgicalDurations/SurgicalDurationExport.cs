@@ -213,6 +213,45 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         }
 
         [TestMethod]
+        public void GeneralSurgeryAverage()
+        {
+            // Arrange
+            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+
+            int numberCategories = 8;
+
+            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
+            data[1] = 150m;
+            data[2] = 67m;
+            data[3] = 100m;
+            data[4] = 135m;
+            data[5] = 171m;
+            data[6] = 213m;
+            data[7] = 262m;
+            data[8] = 351m;
+
+            for (int i = 1; i <= numberCategories; i = i + 1)
+            {
+                // Act
+                builder
+                     .WithCategory(
+                         category: i)
+                     .WithGeneralSurgery()
+                     .WithAverage()
+                     .Build();
+
+                // Assert
+                Assert.AreEqual(
+                    expected: data[i],
+                    actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+
+                Assert.AreEqual(
+                    expected: minutes,
+                    actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+            }
+        }
+
+        [TestMethod]
         public void Category1EarNoseThroatSurgeryAverage()
         {
             // Arrange
