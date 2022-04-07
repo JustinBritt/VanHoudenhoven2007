@@ -180,5 +180,125 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
                 expected: minutes,
                 actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
         }
+
+        [TestMethod]
+        public void Category4EarNoseThroatSurgeryAverage()
+        {
+            // Arrange
+            SurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+
+            // Act
+            builder
+                .WithCategory(
+                    category: 4)
+                .WithEarNoseThroat()
+                .WithAverage()
+                .Build();
+
+            // Assert
+            Assert.AreEqual(
+                expected: 102m,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+        }
+
+        [TestMethod]
+        public void Category5EarNoseThroatSurgeryAverage()
+        {
+            // Arrange
+            SurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+
+            // Act
+            builder
+                .WithCategory(
+                    category: 5)
+                .WithEarNoseThroat()
+                .WithAverage()
+                .Build();
+
+            // Assert
+            Assert.AreEqual(
+                expected: 127m,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+        }
+
+        [TestMethod]
+        public void Category6EarNoseThroatSurgeryAverage()
+        {
+            // Arrange
+            SurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+
+            // Act
+            builder
+                .WithCategory(
+                    category: 6)
+                .WithEarNoseThroat()
+                .WithAverage()
+                .Build();
+
+            // Assert
+            Assert.AreEqual(
+                expected: 182m,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+        }
+
+        [TestMethod]
+        public void Category7EarNoseThroatSurgeryAverage()
+        {
+            // Arrange
+            SurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+
+            // Act
+            builder
+                .WithCategory(
+                    category: 7)
+                .WithEarNoseThroat()
+                .WithAverage()
+                .Build();
+
+            // Assert
+            Assert.AreEqual(
+                expected: 254m,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+        }
+
+        [TestMethod]
+        public void Category8EarNoseThroatSurgeryAverage()
+        {
+            // Arrange
+            SurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+
+            // Act
+            builder
+                .WithCategory(
+                    category: 8)
+                .WithEarNoseThroat()
+                .WithAverage()
+                .Build();
+
+            // Assert
+            Assert.AreEqual(
+                expected: 549m,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+
+            Assert.AreEqual(
+                expected: minutes,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+        }
     }
 }
