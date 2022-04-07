@@ -34,6 +34,8 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
 
         ISurgicalDurationExportTestBuilder WithOphthalmology();
 
+        ISurgicalDurationExportTestBuilder WithOrthopedicSurgery();
+
         ISurgicalDurationExportTestBuilder WithStdDev();
     }
 
@@ -133,6 +135,13 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         public ISurgicalDurationExportTestBuilder WithOphthalmology()
         {
             this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateOphthalmology();
+
+            return this;
+        }
+
+        public ISurgicalDurationExportTestBuilder WithOrthopedicSurgery()
+        {
+            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateOrthopedicSurgery();
 
             return this;
         }
