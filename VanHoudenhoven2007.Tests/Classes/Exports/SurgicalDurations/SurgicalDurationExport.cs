@@ -40,7 +40,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
 
         ISurgicalDurationExportTestBuilder WithStdDev();
 
-        ISurgicalDurationExportTestBuilder WithTrauma()
+        ISurgicalDurationExportTestBuilder WithTrauma();
     }
 
     public sealed class SurgicalDurationExportTestBuilder : ISurgicalDurationExportTestBuilder
