@@ -159,6 +159,8 @@
     [TestClass]
     public sealed class SurgicalFrequencyExport
     {
+        private const string minutes = "min";
+
         [TestMethod]
         public void TestMethod1()
         {
