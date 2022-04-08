@@ -196,5 +196,39 @@
                     actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
             }
         }
+
+        [TestMethod]
+        public void GeneralSurgery()
+        {
+            // Arrange
+            ISurgicalFrequencyExportTestBuilder builder = new SurgicalFrequencyExportTestBuilder();
+
+            int numberCategories = 8;
+
+            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
+            data[1] = 0.08m;
+            data[2] = 0.03m;
+            data[3] = 0.12m;
+            data[4] = 0.19m;
+            data[5] = 0.20m;
+            data[6] = 0.03m;
+            data[7] = 0.25m;
+            data[8] = 0.09m;
+
+            for (int i = 1; i <= numberCategories; i = i + 1)
+            {
+                // Act
+                builder
+                     .WithCategory(
+                         category: i)
+                     .WithGeneralSurgery()
+                     .Build();
+
+                // Assert
+                Assert.AreEqual(
+                    expected: data[i],
+                    actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
+            }
+        }
     }
 }
