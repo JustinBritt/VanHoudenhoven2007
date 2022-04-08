@@ -264,5 +264,39 @@
                     actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
             }
         }
+
+        [TestMethod]
+        public void Neurosurgery()
+        {
+            // Arrange
+            ISurgicalFrequencyExportTestBuilder builder = new SurgicalFrequencyExportTestBuilder();
+
+            int numberCategories = 8;
+
+            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
+            data[1] = 0.08m;
+            data[2] = 0.17m;
+            data[3] = 0.14m;
+            data[4] = 0.28m;
+            data[5] = 0.12m;
+            data[6] = 0.21m;
+            data[7] = 0.00m;
+            data[8] = 0.00m;
+
+            for (int i = 1; i <= numberCategories; i = i + 1)
+            {
+                // Act
+                builder
+                     .WithCategory(
+                         category: i)
+                     .WithNeurosurgery()
+                     .Build();
+
+                // Assert
+                Assert.AreEqual(
+                    expected: data[i],
+                    actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
+            }
+        }
     }
 }
