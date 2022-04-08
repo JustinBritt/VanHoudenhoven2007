@@ -164,11 +164,6 @@
         private const string minutes = "min";
 
         [TestMethod]
-        public void TestMethod1()
-        {
-        }
-
-        [TestMethod]
         public void EarNoseThroatSurgery()
         {
             // Arrange
