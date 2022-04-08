@@ -1,5 +1,7 @@
 ﻿namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalFrequencies
 {
+    using System;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using VanHoudenhoven2007.AbstractFactories;
@@ -164,6 +166,40 @@
         [TestMethod]
         public void TestMethod1()
         {
+        }
+
+        [TestMethod]
+        public void EarNoseThroatSurgery()
+        {
+            // Arrange
+            ISurgicalFrequencyExportTestBuilder builder = new SurgicalFrequencyExportTestBuilder();
+
+            int numberCategories = 8;
+
+            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
+            data[1] = 0.04m;
+            data[2] = 0.33m;
+            data[3] = 0.19m;
+            data[4] = 0.12m;
+            data[5] = 0.14m;
+            data[6] = 0.08m;
+            data[7] = 0.05m;
+            data[8] = 0.06m;
+
+            for (int i = 1; i <= numberCategories; i = i + 1)
+            {
+                // Act
+                builder
+                     .WithCategory(
+                         category: i)
+                     .WithEarNoseThroatSurgery()
+                     .Build();
+
+                // Assert
+                Assert.AreEqual(
+                    expected: data[i],
+                    actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
+            }
         }
     }
 }
