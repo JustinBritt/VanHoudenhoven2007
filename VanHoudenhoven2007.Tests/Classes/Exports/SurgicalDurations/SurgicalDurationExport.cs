@@ -41,6 +41,8 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         ISurgicalDurationExportTestBuilder WithStdDev();
 
         ISurgicalDurationExportTestBuilder WithTrauma();
+
+        ISurgicalDurationExportTestBuilder WithUrology();
     }
 
     public sealed class SurgicalDurationExportTestBuilder : ISurgicalDurationExportTestBuilder
@@ -167,6 +169,13 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         public ISurgicalDurationExportTestBuilder WithTrauma()
         {
             this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateTrauma();
+
+            return this;
+        }
+
+        public ISurgicalDurationExportTestBuilder WithUrology()
+        {
+            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateUrology();
 
             return this;
         }
