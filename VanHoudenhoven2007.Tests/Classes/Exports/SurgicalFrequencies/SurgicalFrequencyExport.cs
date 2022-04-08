@@ -434,5 +434,39 @@
                     actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
             }
         }
+
+        [TestMethod]
+        public void Urology()
+        {
+            // Arrange
+            ISurgicalFrequencyExportTestBuilder builder = new SurgicalFrequencyExportTestBuilder();
+
+            int numberCategories = 8;
+
+            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
+            data[1] = 0.03m;
+            data[2] = 0.05m;
+            data[3] = 0.30m;
+            data[4] = 0.15m;
+            data[5] = 0.17m;
+            data[6] = 0.21m;
+            data[7] = 0.08m;
+            data[8] = 0.00m;
+
+            for (int i = 1; i <= numberCategories; i = i + 1)
+            {
+                // Act
+                builder
+                     .WithCategory(
+                         category: i)
+                     .WithUrology()
+                     .Build();
+
+                // Assert
+                Assert.AreEqual(
+                    expected: data[i],
+                    actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
+            }
+        }
     }
 }
