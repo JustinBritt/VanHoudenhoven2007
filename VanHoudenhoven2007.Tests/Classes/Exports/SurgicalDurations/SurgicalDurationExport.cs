@@ -381,6 +381,32 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
                 new object[] { 8, 0m, minutes },
             };
 
+        private static IEnumerable<object[]> TraumaAverageData =>
+            new[]
+            {
+                new object[] { 1, 100m, minutes },
+                new object[] { 2, 62m, minutes },
+                new object[] { 3, 81m, minutes },
+                new object[] { 4, 122m, minutes },
+                new object[] { 5, 176m, minutes },
+                new object[] { 6, 0m, minutes },
+                new object[] { 7, 0m, minutes },
+                new object[] { 8, 0m, minutes },
+            };
+
+        private static IEnumerable<object[]> TraumaStdDevData =>
+            new[]
+            {
+                new object[] { 1, 68m, minutes },
+                new object[] { 2, 23m, minutes },
+                new object[] { 3, 30m, minutes },
+                new object[] { 4, 38m, minutes },
+                new object[] { 5, 92m, minutes },
+                new object[] { 6, 0m, minutes },
+                new object[] { 7, 0m, minutes },
+                new object[] { 8, 0m, minutes },
+            };
+
         [TestMethod]
         [DynamicData(nameof(EarNoseThroatSurgeryAverageData))]
         public void EarNoseThroatSurgeryAverage(
@@ -774,81 +800,59 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         }
 
         [TestMethod]
-        public void TraumaAverage()
+        [DynamicData(nameof(TraumaAverageData))]
+        public void TraumaAverage(
+            int category,
+            decimal value,
+            string unit)
         {
             // Arrange
             ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
-            int numberCategories = 8;
+            // Act
+            builder
+                .WithCategory(
+                    category: category)
+                .WithTrauma()
+                .WithAverage()
+                .Build();
 
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 100m;
-            data[2] = 62m;
-            data[3] = 81m;
-            data[4] = 122m;
-            data[5] = 176m;
-            data[6] = 0m;
-            data[7] = 0m;
-            data[8] = 0m;
+            // Assert
+            Assert.AreEqual(
+                expected: value,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
 
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithTrauma()
-                     .WithAverage()
-                     .Build();
-
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-                Assert.AreEqual(
-                    expected: minutes,
-                    actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-            }
+            Assert.AreEqual(
+                expected: unit,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
-        public void TraumaStdDev()
+        [DynamicData(nameof(TraumaStdDevData))]
+        public void TraumaStdDev(
+            int category,
+            decimal value,
+            string unit)
         {
             // Arrange
             ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
-            int numberCategories = 8;
+            // Act
+            builder
+                .WithCategory(
+                    category: category)
+                .WithTrauma()
+                .WithStdDev()
+                .Build();
 
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 68m;
-            data[2] = 23m;
-            data[3] = 30m;
-            data[4] = 38m;
-            data[5] = 92m;
-            data[6] = 0m;
-            data[7] = 0m;
-            data[8] = 0m;
+            // Assert
+            Assert.AreEqual(
+                expected: value,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
 
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithTrauma()
-                     .WithStdDev()
-                     .Build();
-
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-                Assert.AreEqual(
-                    expected: minutes,
-                    actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-            }
+            Assert.AreEqual(
+                expected: unit,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
