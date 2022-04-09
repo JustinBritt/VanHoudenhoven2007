@@ -407,6 +407,32 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
                 new object[] { 8, 0m, minutes },
             };
 
+        private static IEnumerable<object[]> UrologyAverageData =>
+            new[]
+            {
+                new object[] { 1, 121m, minutes },
+                new object[] { 2, 59m, minutes },
+                new object[] { 3, 74m, minutes },
+                new object[] { 4, 102m, minutes },
+                new object[] { 5, 152m, minutes },
+                new object[] { 6, 230m, minutes },
+                new object[] { 7, 385m, minutes },
+                new object[] { 8, 0m, minutes },
+            };
+
+        private static IEnumerable<object[]> UrologyStdDevData =>
+            new[]
+            {
+                new object[] { 1, 68m, minutes },
+                new object[] { 2, 30m, minutes },
+                new object[] { 3, 26m, minutes },
+                new object[] { 4, 49m, minutes },
+                new object[] { 5, 49m, minutes },
+                new object[] { 6, 68m, minutes },
+                new object[] { 7, 123m, minutes },
+                new object[] { 8, 0m, minutes },
+            };
+
         [TestMethod]
         [DynamicData(nameof(EarNoseThroatSurgeryAverageData))]
         public void EarNoseThroatSurgeryAverage(
@@ -856,81 +882,59 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         }
 
         [TestMethod]
-        public void UrologyAverage()
+        [DynamicData(nameof(UrologyAverageData))]
+        public void UrologyAverage(
+            int category,
+            decimal value,
+            string unit)
         {
             // Arrange
             ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
-            int numberCategories = 8;
+            // Act
+            builder
+                .WithCategory(
+                    category: category)
+                .WithUrology()
+                .WithAverage()
+                .Build();
 
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 121m;
-            data[2] = 59m;
-            data[3] = 74m;
-            data[4] = 102m;
-            data[5] = 152m;
-            data[6] = 230m;
-            data[7] = 385m;
-            data[8] = 0m;
+            // Assert
+            Assert.AreEqual(
+                expected: value,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
 
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithUrology()
-                     .WithAverage()
-                     .Build();
-
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-                Assert.AreEqual(
-                    expected: minutes,
-                    actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-            }
+            Assert.AreEqual(
+                expected: unit,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
-        public void UrologyStdDev()
+        [DynamicData(nameof(UrologyStdDevData))]
+        public void UrologyStdDev(
+            int category,
+            decimal value,
+            string unit)
         {
             // Arrange
             ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
-            int numberCategories = 8;
+            // Act
+            builder
+                .WithCategory(
+                    category: category)
+                .WithUrology()
+                .WithStdDev()
+                .Build();
 
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 68m;
-            data[2] = 30m;
-            data[3] = 26m;
-            data[4] = 49m;
-            data[5] = 49m;
-            data[6] = 68m;
-            data[7] = 123m;
-            data[8] = 0m;
+            // Assert
+            Assert.AreEqual(
+                expected: value,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
 
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithUrology()
-                     .WithStdDev()
-                     .Build();
-
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-                Assert.AreEqual(
-                    expected: minutes,
-                    actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-            }
+            Assert.AreEqual(
+                expected: unit,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
         }
     }
 }
