@@ -343,6 +343,40 @@
         }
 
         [TestMethod]
+        public void OralSurgery()
+        {
+            // Arrange
+            ISurgicalFrequencyExportTestBuilder builder = new SurgicalFrequencyExportTestBuilder();
+
+            int numberCategories = 8;
+
+            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
+            data[1] = 0.01m;
+            data[2] = 0.44m;
+            data[3] = 0.44m;
+            data[4] = 0.11m;
+            data[5] = 0.00m;
+            data[6] = 0.00m;
+            data[7] = 0.00m;
+            data[8] = 0.00m;
+
+            for (int i = 1; i <= numberCategories; i = i + 1)
+            {
+                // Act
+                builder
+                     .WithCategory(
+                         category: i)
+                     .WithOralSurgery()
+                     .Build();
+
+                // Assert
+                Assert.AreEqual(
+                    expected: data[i],
+                    actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
+            }
+        }
+
+        [TestMethod]
         public void OrthopedicSurgery()
         {
             // Arrange
