@@ -1,6 +1,8 @@
 namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -197,43 +199,45 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
 
         private const string skew = "skew";
 
+        private static IEnumerable<object[]> EarNoseThroatSurgeryAverageData => 
+            new [] 
+            {
+                new object[] { 1, 102m, minutes },
+                new object[] { 2, 40m, minutes },
+                new object[] { 3, 65m, minutes },
+                new object[] { 4, 102m, minutes },
+                new object[] { 5, 127m, minutes },
+                new object[] { 6, 182m, minutes },
+                new object[] { 7, 254m, minutes },
+                new object[] { 8, 549m, minutes },
+            };
+
         [TestMethod]
-        public void EarNoseThroatSurgeryAverage()
+        [DynamicData(nameof(EarNoseThroatSurgeryAverageData))]
+        public void EarNoseThroatSurgeryAverage(
+            int category,
+            decimal value,
+            string unit)
         {
             // Arrange
             ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
-            int numberCategories = 8;
+            // Act
+            builder
+                .WithCategory(
+                    category: category)
+                .WithEarNoseThroatSurgery()
+                .WithAverage()
+                .Build();
 
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 102m;
-            data[2] = 40m;
-            data[3] = 65m;
-            data[4] = 102m;
-            data[5] = 127m;
-            data[6] = 182m;
-            data[7] = 254m;
-            data[8] = 549m;
+            // Assert
+            Assert.AreEqual(
+                expected: value,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
 
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithEarNoseThroatSurgery()
-                     .WithAverage()
-                     .Build();
-
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-                Assert.AreEqual(
-                    expected: minutes,
-                    actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-            }
+            Assert.AreEqual(
+                expected: unit,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
