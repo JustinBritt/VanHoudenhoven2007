@@ -11,930 +11,252 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
     using VanHoudenhoven2007.Interfaces.Contexts.SurgicalDurations;
     using VanHoudenhoven2007.Interfaces.Exports.SurgicalDurations;
 
-    public interface ISurgicalDurationExportTestBuilder
-    {
-        ISurgicalDurationInputContext SurgicalDurationInputContext { get; }
-
-        ISurgicalDurationExport SurgicalDurationExport { get; }
-
-        ISurgicalDurationOutputContext SurgicalDurationOutputContext { get; }
-
-        void Build();
-
-        ISurgicalDurationExportTestBuilder WithAverage();
-
-        ISurgicalDurationExportTestBuilder WithCategory(
-            int category);
-
-        ISurgicalDurationExportTestBuilder WithEarNoseThroatSurgery();
-
-        ISurgicalDurationExportTestBuilder WithGeneralSurgery();
-
-        ISurgicalDurationExportTestBuilder WithGynecologicalSurgery();
-
-        ISurgicalDurationExportTestBuilder WithNeurosurgery();
-
-        ISurgicalDurationExportTestBuilder WithOphthalmology();
-
-        ISurgicalDurationExportTestBuilder WithOralSurgery();
-
-        ISurgicalDurationExportTestBuilder WithOrthopedicSurgery();
-
-        ISurgicalDurationExportTestBuilder WithPlasticSurgery();
-
-        ISurgicalDurationExportTestBuilder WithStdDev();
-
-        ISurgicalDurationExportTestBuilder WithTrauma();
-
-        ISurgicalDurationExportTestBuilder WithUrology();
-    }
-
-    public sealed class SurgicalDurationExportTestBuilder : ISurgicalDurationExportTestBuilder
-    {
-        public SurgicalDurationExportTestBuilder()
-        {
-            this.AbstractFactory = VanHoudenhoven2007.AbstractFactories.AbstractFactory.Create();
-
-            this.DependenciesAbstractFactory = this.AbstractFactory.CreateDependenciesAbstractFactory();
-        }
-
-        public IAbstractFactory AbstractFactory { get; }
-
-        public Hl7.Fhir.Model.INullableValue<int> Category { get; private set; }
-
-        public IDependenciesAbstractFactory DependenciesAbstractFactory { get; }
-
-        public Hl7.Fhir.Model.CodeableConcept Specialty { get; private set; }
-
-        public Hl7.Fhir.Model.IValue<string> Statistic { get; private set; }
-
-        public ISurgicalDurationInputContext SurgicalDurationInputContext { get; private set; }
-
-        public ISurgicalDurationExport SurgicalDurationExport { get; private set; }
-
-        public ISurgicalDurationOutputContext SurgicalDurationOutputContext { get; private set; }
-
-        public void Build(
-            Hl7.Fhir.Model.INullableValue<int> category,
-            Hl7.Fhir.Model.CodeableConcept specialty,
-            Hl7.Fhir.Model.IValue<string> statistic)
-        {
-            this.SurgicalDurationInputContext = this.AbstractFactory.CreateContextsAbstractFactory().CreateSurgicalDurationInputContextFactory().Create(
-                category: category,
-                specialty: specialty,
-                statistic: statistic);
-
-            this.SurgicalDurationExport = this.AbstractFactory.CreateExportsAbstractFactory().CreateSurgicalDurationExportFactory().Create();
-
-            this.SurgicalDurationOutputContext = this.SurgicalDurationExport.GetSurgicalDuration(
-                this.AbstractFactory,
-                this.SurgicalDurationInputContext);
-        }
-
-        public void Build()
-        {
-            this.Build(
-                category: this.Category,
-                specialty: this.Specialty,
-                statistic: this.Statistic);
-        }
-
-        public ISurgicalDurationExportTestBuilder WithAverage()
-        {
-            this.Statistic = this.DependenciesAbstractFactory.CreateValueFactory().CreateAverage();
-
-            return this;
-        }
-
-        public ISurgicalDurationExportTestBuilder WithCategory(
-            int category)
-        {
-            this.Category = this.DependenciesAbstractFactory.CreateNullableValueFactory().Create<int>(category);
-
-            return this;
-        }
-
-        public ISurgicalDurationExportTestBuilder WithEarNoseThroatSurgery()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateEarNoseThroatSurgery();
-
-            return this;
-        }
-
-        public ISurgicalDurationExportTestBuilder WithGeneralSurgery()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateGeneralSurgery();
-
-            return this;
-        }
-
-        public ISurgicalDurationExportTestBuilder WithGynecologicalSurgery()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateGynecologicalSurgery();
-
-            return this;
-        }
-
-        public ISurgicalDurationExportTestBuilder WithNeurosurgery()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateNeurosurgery();
-
-            return this;
-        }
-
-        public ISurgicalDurationExportTestBuilder WithOphthalmology()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateOphthalmology();
-
-            return this;
-        }
-
-        public ISurgicalDurationExportTestBuilder WithOralSurgery()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateOralSurgery();
-
-            return this;
-        }
-
-        public ISurgicalDurationExportTestBuilder WithOrthopedicSurgery()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateOrthopedicSurgery();
-
-            return this;
-        }
-
-        public ISurgicalDurationExportTestBuilder WithPlasticSurgery()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreatePlasticSurgery();
-
-            return this;
-        }
-
-        public ISurgicalDurationExportTestBuilder WithStdDev()
-        {
-            this.Statistic = this.DependenciesAbstractFactory.CreateValueFactory().CreateStdDev();
-
-            return this;
-        }
-
-        public ISurgicalDurationExportTestBuilder WithTrauma()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateTrauma();
-
-            return this;
-        }
-
-        public ISurgicalDurationExportTestBuilder WithUrology()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateUrology();
-
-            return this;
-        }
-    }
-
     [TestClass]
     public sealed class SurgicalDurationExport
     {
+        // Codes
+        private const string EarNoseThroatSurgery = "394604002";
+        private const string GeneralSurgery = "394609007";
+        private const string GynecologicalSurgery = "394586005";
+        private const string Neurosurgery = "394610002";
+        private const string OphthalmicSurgery = "422191005";
+        private const string Ophthalmology = "394594003";
+        private const string OralSurgery = "394605001";
+        private const string OrthopedicSurgery = "24241000087106";
+        private const string PlasticSurgery = "394611003";
+        private const string Trauma = "394801008";
+        private const string Urology = "394612005";
+
+        private const string SNOMEDCT = "http://snomed.info/sct";
+
+        private const string average = "average";
+        private const string stddev = "std-dev";
         private const string minutes = "min";
 
         private const string skew = "skew";
 
-        private static IEnumerable<object[]> EarNoseThroatSurgeryAverageData => 
-            new [] 
-            {
-                new object[] { 1, 102m, minutes },
-                new object[] { 2, 40m, minutes },
-                new object[] { 3, 65m, minutes },
-                new object[] { 4, 102m, minutes },
-                new object[] { 5, 127m, minutes },
-                new object[] { 6, 182m, minutes },
-                new object[] { 7, 254m, minutes },
-                new object[] { 8, 549m, minutes },
-            };
-
-        private static IEnumerable<object[]> EarNoseThroatSurgeryStdDevData =>
+        private static IEnumerable<object[]> Table2Data =>
             new[]
             {
-                new object[] { 1, 125m, minutes },
-                new object[] { 2, 17m, minutes },
-                new object[] { 3, 24m, minutes },
-                new object[] { 4, 35m, minutes },
-                new object[] { 5, 32m, minutes },
-                new object[] { 6, 65m, minutes },
-                new object[] { 7, 75m, minutes },
-                new object[] { 8, 203m, minutes },
-            };
+                new object[] { EarNoseThroatSurgery, 1, 102m, minutes, average },
+                new object[] { EarNoseThroatSurgery, 2, 40m, minutes, average },
+                new object[] { EarNoseThroatSurgery, 3, 65m, minutes, average },
+                new object[] { EarNoseThroatSurgery, 4, 102m, minutes, average },
+                new object[] { EarNoseThroatSurgery, 5, 127m, minutes, average },
+                new object[] { EarNoseThroatSurgery, 6, 182m, minutes, average },
+                new object[] { EarNoseThroatSurgery, 7, 254m, minutes, average },
+                new object[] { EarNoseThroatSurgery, 8, 549m, minutes, average },
 
-        private static IEnumerable<object[]> GeneralSurgeryAverageData =>
-            new[]
-            {
-                new object[] { 1, 150m, minutes },
-                new object[] { 2, 67m, minutes },
-                new object[] { 3, 100m, minutes },
-                new object[] { 4, 135m, minutes },
-                new object[] { 5, 171m, minutes },
-                new object[] { 6, 213m, minutes },
-                new object[] { 7, 262m, minutes },
-                new object[] { 8, 351m, minutes },
-            };
+                new object[] { EarNoseThroatSurgery, 1, 125m, minutes, stddev },
+                new object[] { EarNoseThroatSurgery, 2, 17m, minutes, stddev },
+                new object[] { EarNoseThroatSurgery, 3, 24m, minutes, stddev },
+                new object[] { EarNoseThroatSurgery, 4, 35m, minutes, stddev },
+                new object[] { EarNoseThroatSurgery, 5, 32m, minutes, stddev },
+                new object[] { EarNoseThroatSurgery, 6, 65m, minutes, stddev },
+                new object[] { EarNoseThroatSurgery, 7, 75m, minutes, stddev },
+                new object[] { EarNoseThroatSurgery, 8, 203m, minutes, stddev },
 
-        private static IEnumerable<object[]> GeneralSurgeryStdDevData =>
-            new[]
-            {
-                new object[] { 1, 89m, minutes },
-                new object[] { 2, 31m, minutes },
-                new object[] { 3, 44m, minutes },
-                new object[] { 4, 52m, minutes },
-                new object[] { 5, 63m, minutes },
-                new object[] { 6, 89m, minutes },
-                new object[] { 7, 87m, minutes },
-                new object[] { 8, 124m, minutes },
-            };
+                new object[] { GeneralSurgery, 1, 150m, minutes, average },
+                new object[] { GeneralSurgery, 2, 67m, minutes, average },
+                new object[] { GeneralSurgery, 3, 100m, minutes, average },
+                new object[] { GeneralSurgery, 4, 135m, minutes, average },
+                new object[] { GeneralSurgery, 5, 171m, minutes, average },
+                new object[] { GeneralSurgery, 6, 213m, minutes, average },
+                new object[] { GeneralSurgery, 7, 262m, minutes, average },
+                new object[] { GeneralSurgery, 8, 351m, minutes, average },
 
-        private static IEnumerable<object[]> GynecologicalSurgeryAverageData =>
-            new[]
-            {
-                new object[] { 1, 80m, minutes },
-                new object[] { 2, 52m, minutes },
-                new object[] { 3, 73m, minutes },
-                new object[] { 4, 98m, minutes },
-                new object[] { 5, 125m, minutes },
-                new object[] { 6, 156m, minutes },
-                new object[] { 7, 213m, minutes },
-                new object[] { 8, 0m, minutes },
-            };
+                new object[] { GeneralSurgery, 1, 89m, minutes, stddev },
+                new object[] { GeneralSurgery, 2, 31m, minutes, stddev },
+                new object[] { GeneralSurgery, 3, 44m, minutes, stddev },
+                new object[] { GeneralSurgery, 4, 52m, minutes, stddev },
+                new object[] { GeneralSurgery, 5, 63m, minutes, stddev },
+                new object[] { GeneralSurgery, 6, 89m, minutes, stddev },
+                new object[] { GeneralSurgery, 7, 87m, minutes, stddev },
+                new object[] { GeneralSurgery, 8, 124m, minutes, stddev },
 
-        private static IEnumerable<object[]> GynecologicalSurgeryStdDevData =>
-            new[]
-            {
-                new object[] { 1, 65m, minutes },
-                new object[] { 2, 19m, minutes },
-                new object[] { 3, 33m, minutes },
-                new object[] { 4, 32m, minutes },
-                new object[] { 5, 43m, minutes },
-                new object[] { 6, 41m, minutes },
-                new object[] { 7, 82m, minutes },
-                new object[] { 8, 0m, minutes },
-            };
+                new object[] { GynecologicalSurgery, 1, 80m, minutes, average },
+                new object[] { GynecologicalSurgery, 2, 52m, minutes, average },
+                new object[] { GynecologicalSurgery, 3, 73m, minutes, average },
+                new object[] { GynecologicalSurgery, 4, 98m, minutes, average },
+                new object[] { GynecologicalSurgery, 5, 125m, minutes, average },
+                new object[] { GynecologicalSurgery, 6, 156m, minutes, average },
+                new object[] { GynecologicalSurgery, 7, 213m, minutes, average },
+                new object[] { GynecologicalSurgery, 8, 0m, minutes, average },
 
-        private static IEnumerable<object[]> NeurosurgeryAverageData =>
-            new[]
-            {
-                new object[] { 1, 192m, minutes },
-                new object[] { 2, 113m, minutes },
-                new object[] { 3, 171m, minutes },
-                new object[] { 4, 255m, minutes },
-                new object[] { 5, 324m, minutes },
-                new object[] { 6, 492m, minutes },
-                new object[] { 7, 0m, minutes },
-                new object[] { 8, 0m, minutes },
-            };
+                new object[] { GynecologicalSurgery, 1, 65m, minutes, stddev },
+                new object[] { GynecologicalSurgery, 2, 19m, minutes, stddev },
+                new object[] { GynecologicalSurgery, 3, 33m, minutes, stddev },
+                new object[] { GynecologicalSurgery, 4, 32m, minutes, stddev },
+                new object[] { GynecologicalSurgery, 5, 43m, minutes, stddev },
+                new object[] { GynecologicalSurgery, 6, 41m, minutes, stddev },
+                new object[] { GynecologicalSurgery, 7, 82m, minutes, stddev },
+                new object[] { GynecologicalSurgery, 8, 0m, minutes, stddev },
 
-        private static IEnumerable<object[]> NeurosurgeryStdDevData =>
-            new[]
-            {
-                new object[] { 1, 165m, minutes },
-                new object[] { 2, 41m, minutes },
-                new object[] { 3, 62m, minutes },
-                new object[] { 4, 62m, minutes },
-                new object[] { 5, 73m, minutes },
-                new object[] { 6, 177m, minutes },
-                new object[] { 7, 0m, minutes },
-                new object[] { 8, 0m, minutes },
-            };
+                new object[] { Neurosurgery, 1, 192m, minutes, average },
+                new object[] { Neurosurgery, 2, 113m, minutes, average },
+                new object[] { Neurosurgery, 3, 171m, minutes, average },
+                new object[] { Neurosurgery, 4, 255m, minutes, average },
+                new object[] { Neurosurgery, 5, 324m, minutes, average },
+                new object[] { Neurosurgery, 6, 492m, minutes, average },
+                new object[] { Neurosurgery, 7, 0m, minutes, average },
+                new object[] { Neurosurgery, 8, 0m, minutes, average },
 
-        private static IEnumerable<object[]> OphthalmologyAverageData =>
-            new[]
-            {
-                new object[] { 1, 83m, minutes },
-                new object[] { 2, 46m, minutes },
-                new object[] { 3, 60m, minutes },
-                new object[] { 4, 95m, minutes },
-                new object[] { 5, 127m, minutes },
-                new object[] { 6, 0m, minutes },
-                new object[] { 7, 0m, minutes },
-                new object[] { 8, 0m, minutes },
-            };
+                new object[] { Neurosurgery, 1, 165m, minutes, stddev },
+                new object[] { Neurosurgery, 2, 41m, minutes, stddev },
+                new object[] { Neurosurgery, 3, 62m, minutes, stddev },
+                new object[] { Neurosurgery, 4, 62m, minutes, stddev },
+                new object[] { Neurosurgery, 5, 73m, minutes, stddev },
+                new object[] { Neurosurgery, 6, 177m, minutes, stddev },
+                new object[] { Neurosurgery, 7, 0m, minutes, stddev },
+                new object[] { Neurosurgery, 8, 0m, minutes, stddev },
 
-        private static IEnumerable<object[]> OphthalmologyStdDevData => 
-            new [] 
-            {
-                new object[] { 1, 46m, minutes },
-                new object[] { 2, 14m, minutes },
-                new object[] { 3, 22m, minutes },
-                new object[] { 4, 30m, minutes },
-                new object[] { 5, 34m, minutes },
-                new object[] { 6, 0m, minutes },
-                new object[] { 7, 0m, minutes },
-                new object[] { 8, 0m, minutes },
-            };
+                new object[] { Ophthalmology, 1, 83m, minutes, average },
+                new object[] { Ophthalmology, 2, 46m, minutes, average },
+                new object[] { Ophthalmology, 3, 60m, minutes, average },
+                new object[] { Ophthalmology, 4, 95m, minutes, average },
+                new object[] { Ophthalmology, 5, 127m, minutes, average },
+                new object[] { Ophthalmology, 6, 0m, minutes, average },
+                new object[] { Ophthalmology, 7, 0m, minutes, average },
+                new object[] { Ophthalmology, 8, 0m, minutes, average },
 
-        private static IEnumerable<object[]> OrthopedicSurgeryAverageData =>
-            new[]
-            {
-                new object[] { 1, 107m, minutes },
-                new object[] { 2, 61m, minutes },
-                new object[] { 3, 83m, minutes },
-                new object[] { 4, 109m, minutes },
-                new object[] { 5, 160m, minutes },
-                new object[] { 6, 199m, minutes },
-                new object[] { 7, 291m, minutes },
-                new object[] { 8, 0m, minutes },
-            };
+                new object[] { Ophthalmology, 1, 46m, minutes, stddev },
+                new object[] { Ophthalmology, 2, 14m, minutes, stddev },
+                new object[] { Ophthalmology, 3, 22m, minutes, stddev },
+                new object[] { Ophthalmology, 4, 30m, minutes, stddev },
+                new object[] { Ophthalmology, 5, 34m, minutes, stddev },
+                new object[] { Ophthalmology, 6, 0m, minutes, stddev },
+                new object[] { Ophthalmology, 7, 0m, minutes, stddev },
+                new object[] { Ophthalmology, 8, 0m, minutes, stddev },
 
-        private static IEnumerable<object[]> OrthopedicSurgeryStdDevData =>
-            new[]
-            {
-                new object[] { 1, 58m, minutes },
-                new object[] { 2, 23m, minutes },
-                new object[] { 3, 30m, minutes },
-                new object[] { 4, 38m, minutes },
-                new object[] { 5, 43m, minutes },
-                new object[] { 6, 45m, minutes },
-                new object[] { 7, 102m, minutes },
-                new object[] { 8, 0m, minutes },
-            };
+                new object[] { OralSurgery, 1, 97m, minutes, average },
+                new object[] { OralSurgery, 2, 87m, minutes, average },
+                new object[] { OralSurgery, 3, 130m, minutes, average },
+                new object[] { OralSurgery, 4, 238m, minutes, average },
+                new object[] { OralSurgery, 5, 0m, minutes, average },
+                new object[] { OralSurgery, 6, 0m, minutes, average },
+                new object[] { OralSurgery, 7, 0m, minutes, average },
+                new object[] { OralSurgery, 8, 0m, minutes, average },
 
-        private static IEnumerable<object[]> PlasticSurgeryAverageData =>
-            new[]
-            {
-                new object[] { 1, 119m, minutes },
-                new object[] { 2, 63m, minutes },
-                new object[] { 3, 82m, minutes },
-                new object[] { 4, 112m, minutes },
-                new object[] { 5, 139m, minutes },
-                new object[] { 6, 187m, minutes },
-                new object[] { 7, 432m, minutes },
-                new object[] { 8, 0m, minutes },
-            };
+                new object[] { OralSurgery, 1, 37m, minutes, stddev },
+                new object[] { OralSurgery, 2, 29m, minutes, stddev },
+                new object[] { OralSurgery, 3, 43m, minutes, stddev },
+                new object[] { OralSurgery, 4, 87m, minutes, stddev },
+                new object[] { OralSurgery, 5, 0m, minutes, stddev },
+                new object[] { OralSurgery, 6, 0m, minutes, stddev },
+                new object[] { OralSurgery, 7, 0m, minutes, stddev },
+                new object[] { OralSurgery, 8, 0m, minutes, stddev },
 
-        private static IEnumerable<object[]> PlasticSurgeryStdDevData =>
-            new[]
-            {
-                new object[] { 1, 107m, minutes },
-                new object[] { 2, 22m, minutes },
-                new object[] { 3, 28m, minutes },
-                new object[] { 4, 36m, minutes },
-                new object[] { 5, 39m, minutes },
-                new object[] { 6, 57m, minutes },
-                new object[] { 7, 181m, minutes },
-                new object[] { 8, 0m, minutes },
-            };
+                new object[] { OrthopedicSurgery, 1, 107m, minutes, average },
+                new object[] { OrthopedicSurgery, 2, 61m, minutes, average },
+                new object[] { OrthopedicSurgery, 3, 83m, minutes, average },
+                new object[] { OrthopedicSurgery, 4, 109m, minutes, average },
+                new object[] { OrthopedicSurgery, 5, 160m, minutes, average },
+                new object[] { OrthopedicSurgery, 6, 199m, minutes, average },
+                new object[] { OrthopedicSurgery, 7, 291m, minutes, average },
+                new object[] { OrthopedicSurgery, 8, 0m, minutes, average },
 
-        private static IEnumerable<object[]> TraumaAverageData =>
-            new[]
-            {
-                new object[] { 1, 100m, minutes },
-                new object[] { 2, 62m, minutes },
-                new object[] { 3, 81m, minutes },
-                new object[] { 4, 122m, minutes },
-                new object[] { 5, 176m, minutes },
-                new object[] { 6, 0m, minutes },
-                new object[] { 7, 0m, minutes },
-                new object[] { 8, 0m, minutes },
-            };
+                new object[] { OrthopedicSurgery, 1, 58m, minutes, stddev },
+                new object[] { OrthopedicSurgery, 2, 23m, minutes, stddev },
+                new object[] { OrthopedicSurgery, 3, 30m, minutes, stddev },
+                new object[] { OrthopedicSurgery, 4, 38m, minutes, stddev },
+                new object[] { OrthopedicSurgery, 5, 43m, minutes, stddev },
+                new object[] { OrthopedicSurgery, 6, 45m, minutes, stddev },
+                new object[] { OrthopedicSurgery, 7, 102m, minutes, stddev },
+                new object[] { OrthopedicSurgery, 8, 0m, minutes, stddev },
 
-        private static IEnumerable<object[]> TraumaStdDevData =>
-            new[]
-            {
-                new object[] { 1, 68m, minutes },
-                new object[] { 2, 23m, minutes },
-                new object[] { 3, 30m, minutes },
-                new object[] { 4, 38m, minutes },
-                new object[] { 5, 92m, minutes },
-                new object[] { 6, 0m, minutes },
-                new object[] { 7, 0m, minutes },
-                new object[] { 8, 0m, minutes },
-            };
+                new object[] { PlasticSurgery, 1, 119m, minutes, average },
+                new object[] { PlasticSurgery, 2, 63m, minutes, average },
+                new object[] { PlasticSurgery, 3, 82m, minutes, average },
+                new object[] { PlasticSurgery, 4, 112m, minutes, average },
+                new object[] { PlasticSurgery, 5, 139m, minutes, average },
+                new object[] { PlasticSurgery, 6, 187m, minutes, average },
+                new object[] { PlasticSurgery, 7, 432m, minutes, average },
+                new object[] { PlasticSurgery, 8, 0m, minutes, average },
 
-        private static IEnumerable<object[]> UrologyAverageData =>
-            new[]
-            {
-                new object[] { 1, 121m, minutes },
-                new object[] { 2, 59m, minutes },
-                new object[] { 3, 74m, minutes },
-                new object[] { 4, 102m, minutes },
-                new object[] { 5, 152m, minutes },
-                new object[] { 6, 230m, minutes },
-                new object[] { 7, 385m, minutes },
-                new object[] { 8, 0m, minutes },
-            };
+                new object[] { PlasticSurgery, 1, 107m, minutes, stddev },
+                new object[] { PlasticSurgery, 2, 22m, minutes, stddev },
+                new object[] { PlasticSurgery, 3, 28m, minutes, stddev },
+                new object[] { PlasticSurgery, 4, 36m, minutes, stddev },
+                new object[] { PlasticSurgery, 5, 39m, minutes, stddev },
+                new object[] { PlasticSurgery, 6, 57m, minutes, stddev },
+                new object[] { PlasticSurgery, 7, 181m, minutes, stddev },
+                new object[] { PlasticSurgery, 8, 0m, minutes, stddev },
 
-        private static IEnumerable<object[]> UrologyStdDevData =>
-            new[]
-            {
-                new object[] { 1, 68m, minutes },
-                new object[] { 2, 30m, minutes },
-                new object[] { 3, 26m, minutes },
-                new object[] { 4, 49m, minutes },
-                new object[] { 5, 49m, minutes },
-                new object[] { 6, 68m, minutes },
-                new object[] { 7, 123m, minutes },
-                new object[] { 8, 0m, minutes },
+                new object[] { Trauma, 1, 100m, minutes, average },
+                new object[] { Trauma, 2, 62m, minutes, average },
+                new object[] { Trauma, 3, 81m, minutes, average },
+                new object[] { Trauma, 4, 122m, minutes, average },
+                new object[] { Trauma, 5, 176m, minutes, average },
+                new object[] { Trauma, 6, 0m, minutes, average },
+                new object[] { Trauma, 7, 0m, minutes, average },
+                new object[] { Trauma, 8, 0m, minutes, average },
+
+                new object[] { Trauma, 1, 68m, minutes, stddev },
+                new object[] { Trauma, 2, 23m, minutes, stddev },
+                new object[] { Trauma, 3, 30m, minutes, stddev },
+                new object[] { Trauma, 4, 38m, minutes, stddev },
+                new object[] { Trauma, 5, 92m, minutes, stddev },
+                new object[] { Trauma, 6, 0m, minutes, stddev },
+                new object[] { Trauma, 7, 0m, minutes, stddev },
+                new object[] { Trauma, 8, 0m, minutes, stddev },
+
+                new object[] { Urology, 1, 121m, minutes, average },
+                new object[] { Urology, 2, 59m, minutes, average },
+                new object[] { Urology, 3, 74m, minutes, average },
+                new object[] { Urology, 4, 102m, minutes, average },
+                new object[] { Urology, 5, 152m, minutes, average },
+                new object[] { Urology, 6, 230m, minutes, average },
+                new object[] { Urology, 7, 385m, minutes, average },
+                new object[] { Urology, 8, 0m, minutes, average },
+
+                new object[] { Urology, 1, 68m, minutes, stddev },
+                new object[] { Urology, 2, 30m, minutes, stddev },
+                new object[] { Urology, 3, 26m, minutes, stddev },
+                new object[] { Urology, 4, 49m, minutes, stddev },
+                new object[] { Urology, 5, 49m, minutes, stddev },
+                new object[] { Urology, 6, 68m, minutes, stddev },
+                new object[] { Urology, 7, 123m, minutes, stddev },
+                new object[] { Urology, 8, 0m, minutes, stddev },
             };
 
         [TestMethod]
-        [DynamicData(nameof(EarNoseThroatSurgeryAverageData))]
-        public void EarNoseThroatSurgeryAverage(
+        [DynamicData(nameof(Table2Data))]
+        public void Table2(
+            string specialty,
             int category,
             decimal value,
-            string unit)
+            string unit,
+            string statistic)
         {
             // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
+            IAbstractFactory abstractFactory = AbstractFactory.Create();
+
+            IContextsAbstractFactory contextsAbstractFactory = abstractFactory.CreateContextsAbstractFactory();
+
+            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
+
+            IExportsAbstractFactory exportsAbstractFactory = abstractFactory.CreateExportsAbstractFactory();
+            
+            ISurgicalDurationInputContext surgicalDurationInputContext = contextsAbstractFactory.CreateSurgicalDurationInputContextFactory().Create(
+                category: dependenciesAbstractFactory.CreateNullableValueFactory().Create<int>(category),
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().Create(specialty, SNOMEDCT, null),
+                statistic: dependenciesAbstractFactory.CreateValueFactory().Create(statistic));
+
+            ISurgicalDurationExport surgicalDurationExport = exportsAbstractFactory.CreateSurgicalDurationExportFactory().Create();
 
             // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithEarNoseThroatSurgery()
-                .WithAverage()
-                .Build();
+            ISurgicalDurationOutputContext surgicalDurationOutputContext = surgicalDurationExport.GetSurgicalDuration(
+                abstractFactory,
+                surgicalDurationInputContext);
 
             // Assert
             Assert.AreEqual(
                 expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
+                actual: surgicalDurationOutputContext.Duration.Value.Value);
 
             Assert.AreEqual(
                 expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(EarNoseThroatSurgeryStdDevData))]
-        public void EarNoseThroatSurgeryStdDev(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithEarNoseThroatSurgery()
-                .WithStdDev()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(GeneralSurgeryAverageData))]
-        public void GeneralSurgeryAverage(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithGeneralSurgery()
-                .WithAverage()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(GeneralSurgeryStdDevData))]
-        public void GeneralSurgeryStdDev(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithGeneralSurgery()
-                .WithStdDev()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(GynecologicalSurgeryAverageData))]
-        public void GynecologicalSurgeryAverage(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithGynecologicalSurgery()
-                .WithAverage()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(GynecologicalSurgeryStdDevData))]
-        public void GynecologicalSurgeryStdDev(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithGynecologicalSurgery()
-                .WithStdDev()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(NeurosurgeryAverageData))]
-        public void NeurosurgeryAverage(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithNeurosurgery()
-                .WithAverage()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(NeurosurgeryStdDevData))]
-        public void NeurosurgeryStdDev(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithNeurosurgery()
-                .WithStdDev()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(OphthalmologyAverageData))]
-        public void OphthalmologyAverage(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithOphthalmology()
-                .WithAverage()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(OphthalmologyStdDevData))]
-        public void OphthalmologyStdDev(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithOphthalmology()
-                .WithStdDev()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(OrthopedicSurgeryAverageData))]
-        public void OrthopedicSurgeryAverage(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithOrthopedicSurgery()
-                .WithAverage()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(OrthopedicSurgeryStdDevData))]
-        public void OrthopedicSurgeryStdDev(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithOrthopedicSurgery()
-                .WithStdDev()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(PlasticSurgeryAverageData))]
-        public void PlasticSurgeryAverage(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithPlasticSurgery()
-                .WithAverage()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(PlasticSurgeryStdDevData))]
-        public void PlasticSurgeryStdDev(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithPlasticSurgery()
-                .WithStdDev()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(TraumaAverageData))]
-        public void TraumaAverage(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithTrauma()
-                .WithAverage()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(TraumaStdDevData))]
-        public void TraumaStdDev(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithTrauma()
-                .WithStdDev()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(UrologyAverageData))]
-        public void UrologyAverage(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithUrology()
-                .WithAverage()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(UrologyStdDevData))]
-        public void UrologyStdDev(
-            int category,
-            decimal value,
-            string unit)
-        {
-            // Arrange
-            ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
-
-            // Act
-            builder
-                .WithCategory(
-                    category: category)
-                .WithUrology()
-                .WithStdDev()
-                .Build();
-
-            // Assert
-            Assert.AreEqual(
-                expected: value,
-                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-            Assert.AreEqual(
-                expected: unit,
-                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
+                actual: surgicalDurationOutputContext.Duration.UnitElement.Value);
         }
     }
 }
