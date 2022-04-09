@@ -32,6 +32,8 @@
 
         ISurgicalFrequencyExportTestBuilder WithOphthalmology();
 
+        ISurgicalFrequencyExportTestBuilder WithOralSurgery();
+
         ISurgicalFrequencyExportTestBuilder WithOrthopedicSurgery();
 
         ISurgicalFrequencyExportTestBuilder WithPlasticSurgery();
@@ -125,6 +127,13 @@
         public ISurgicalFrequencyExportTestBuilder WithOphthalmology()
         {
             this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateOphthalmology();
+
+            return this;
+        }
+
+        public ISurgicalFrequencyExportTestBuilder WithOralSurgery()
+        {
+            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateOralSurgery();
 
             return this;
         }
