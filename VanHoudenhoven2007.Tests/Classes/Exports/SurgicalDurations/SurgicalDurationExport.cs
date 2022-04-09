@@ -290,6 +290,19 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
                 new object[] { 8, 0m, minutes },
             };
 
+        private static IEnumerable<object[]> NeurosurgeryStdDevData =>
+            new[]
+            {
+                new object[] { 1, 165m, minutes },
+                new object[] { 2, 41m, minutes },
+                new object[] { 3, 62m, minutes },
+                new object[] { 4, 62m, minutes },
+                new object[] { 5, 73m, minutes },
+                new object[] { 6, 177m, minutes },
+                new object[] { 7, 0m, minutes },
+                new object[] { 8, 0m, minutes },
+            };
+
         [TestMethod]
         [DynamicData(nameof(EarNoseThroatSurgeryAverageData))]
         public void EarNoseThroatSurgeryAverage(
@@ -487,42 +500,31 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
         }
 
         [TestMethod]
-        public void NeurosurgeryStdDev()
+        [DynamicData(nameof(NeurosurgeryStdDevData))]
+        public void NeurosurgeryStdDev(
+            int category,
+            decimal value,
+            string unit)
         {
             // Arrange
             ISurgicalDurationExportTestBuilder builder = new SurgicalDurationExportTestBuilder();
 
-            int numberCategories = 8;
+            // Act
+            builder
+                .WithCategory(
+                    category: category)
+                .WithNeurosurgery()
+                .WithStdDev()
+                .Build();
 
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 165m;
-            data[2] = 41m;
-            data[3] = 62m;
-            data[4] = 62m;
-            data[5] = 73m;
-            data[6] = 177m;
-            data[7] = 0m;
-            data[8] = 0m;
+            // Assert
+            Assert.AreEqual(
+                expected: value,
+                actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
 
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithNeurosurgery()
-                     .WithStdDev()
-                     .Build();
-
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalDurationOutputContext.Duration.Value.Value);
-
-                Assert.AreEqual(
-                    expected: minutes,
-                    actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
-            }
+            Assert.AreEqual(
+                expected: unit,
+                actual: builder.SurgicalDurationOutputContext.Duration.UnitElement.Value);
         }
 
         [TestMethod]
