@@ -29,6 +29,7 @@ namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalDurations
 
         private const string average = "average";
         private const string stddev = "std-dev";
+
         private const string minutes = "min";
 
         private const string skew = "skew";
