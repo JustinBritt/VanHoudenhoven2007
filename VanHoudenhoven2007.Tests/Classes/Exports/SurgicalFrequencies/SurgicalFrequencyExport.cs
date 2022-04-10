@@ -1,6 +1,7 @@
 ﻿namespace VanHoudenhoven2007.Tests.Classes.Exports.SurgicalFrequencies
 {
     using System;
+    using System.Collections.Generic;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -9,507 +10,149 @@
     using VanHoudenhoven2007.Interfaces.Contexts.SurgicalFrequencies;
     using VanHoudenhoven2007.Interfaces.Exports.SurgicalFrequencies;
 
-    public interface ISurgicalFrequencyExportTestBuilder
-    {
-        ISurgicalFrequencyInputContext SurgicalFrequencyInputContext { get; }
-
-        ISurgicalFrequencyExport SurgicalFrequencyExport { get; }
-
-        ISurgicalFrequencyOutputContext SurgicalFrequencyOutputContext { get; }
-
-        void Build();
-
-        ISurgicalFrequencyExportTestBuilder WithCategory(
-            int category);
-
-        ISurgicalFrequencyExportTestBuilder WithEarNoseThroatSurgery();
-
-        ISurgicalFrequencyExportTestBuilder WithGeneralSurgery();
-
-        ISurgicalFrequencyExportTestBuilder WithGynecologicalSurgery();
-
-        ISurgicalFrequencyExportTestBuilder WithNeurosurgery();
-
-        ISurgicalFrequencyExportTestBuilder WithOphthalmology();
-
-        ISurgicalFrequencyExportTestBuilder WithOralSurgery();
-
-        ISurgicalFrequencyExportTestBuilder WithOrthopedicSurgery();
-
-        ISurgicalFrequencyExportTestBuilder WithPlasticSurgery();
-
-        ISurgicalFrequencyExportTestBuilder WithTrauma();
-
-        ISurgicalFrequencyExportTestBuilder WithUrology();
-    }
-
-    public sealed class SurgicalFrequencyExportTestBuilder : ISurgicalFrequencyExportTestBuilder
-    {
-        public SurgicalFrequencyExportTestBuilder()
-        {
-            this.AbstractFactory = VanHoudenhoven2007.AbstractFactories.AbstractFactory.Create();
-
-            this.DependenciesAbstractFactory = this.AbstractFactory.CreateDependenciesAbstractFactory();
-        }
-
-        public IAbstractFactory AbstractFactory { get; }
-
-        public Hl7.Fhir.Model.INullableValue<int> Category { get; private set; }
-
-        public IDependenciesAbstractFactory DependenciesAbstractFactory { get; }
-
-        public Hl7.Fhir.Model.CodeableConcept Specialty { get; private set; }
-
-        public ISurgicalFrequencyInputContext SurgicalFrequencyInputContext { get; private set; }
-
-        public ISurgicalFrequencyExport SurgicalFrequencyExport { get; private set; }
-
-        public ISurgicalFrequencyOutputContext SurgicalFrequencyOutputContext { get; private set; }
-
-        public void Build(
-            Hl7.Fhir.Model.INullableValue<int> category,
-            Hl7.Fhir.Model.CodeableConcept specialty)
-        {
-            this.SurgicalFrequencyInputContext = this.AbstractFactory.CreateContextsAbstractFactory().CreateSurgicalFrequencyInputContextFactory().Create(
-                category: category,
-                specialty: specialty);
-
-            this.SurgicalFrequencyExport = this.AbstractFactory.CreateExportsAbstractFactory().CreateSurgicalFrequencyExportFactory().Create();
-
-            this.SurgicalFrequencyOutputContext = this.SurgicalFrequencyExport.GetSurgicalFrequency(
-                this.AbstractFactory,
-                this.SurgicalFrequencyInputContext);
-        }
-
-        public void Build()
-        {
-            this.Build(
-                category: this.Category,
-                specialty: this.Specialty);
-        }
-
-        public ISurgicalFrequencyExportTestBuilder WithCategory(
-            int category)
-        {
-            this.Category = this.DependenciesAbstractFactory.CreateNullableValueFactory().Create<int>(category);
-
-            return this;
-        }
-
-        public ISurgicalFrequencyExportTestBuilder WithEarNoseThroatSurgery()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateEarNoseThroatSurgery();
-
-            return this;
-        }
-
-        public ISurgicalFrequencyExportTestBuilder WithGeneralSurgery()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateGeneralSurgery();
-
-            return this;
-        }
-
-        public ISurgicalFrequencyExportTestBuilder WithGynecologicalSurgery()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateGynecologicalSurgery();
-
-            return this;
-        }
-
-        public ISurgicalFrequencyExportTestBuilder WithNeurosurgery()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateNeurosurgery();
-
-            return this;
-        }
-
-        public ISurgicalFrequencyExportTestBuilder WithOphthalmology()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateOphthalmology();
-
-            return this;
-        }
-
-        public ISurgicalFrequencyExportTestBuilder WithOralSurgery()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateOralSurgery();
-
-            return this;
-        }
-
-        public ISurgicalFrequencyExportTestBuilder WithOrthopedicSurgery()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateOrthopedicSurgery();
-
-            return this;
-        }
-
-        public ISurgicalFrequencyExportTestBuilder WithPlasticSurgery()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreatePlasticSurgery();
-
-            return this;
-        }
-
-        public ISurgicalFrequencyExportTestBuilder WithTrauma()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateTrauma();
-
-            return this;
-        }
-
-        public ISurgicalFrequencyExportTestBuilder WithUrology()
-        {
-            this.Specialty = this.DependenciesAbstractFactory.CreateCodeableConceptFactory().CreateUrology();
-
-            return this;
-        }
-    }
-
     [TestClass]
     public sealed class SurgicalFrequencyExport
     {
-        private const string minutes = "min";
+        // Codes
+        private const string EarNoseThroatSurgery = "394604002";
+        private const string GeneralSurgery = "394609007";
+        private const string GynecologicalSurgery = "394586005";
+        private const string Neurosurgery = "394610002";
+        private const string OphthalmicSurgery = "422191005";
+        private const string Ophthalmology = "394594003";
+        private const string OralSurgery = "394605001";
+        private const string OrthopedicSurgery = "24241000087106";
+        private const string PlasticSurgery = "394611003";
+        private const string Trauma = "394801008";
+        private const string Urology = "394612005";
+
+        private const string SNOMEDCT = "http://snomed.info/sct";
+
+        private static IEnumerable<object[]> Table2Data =>
+            new[]
+            {
+                new object[] { EarNoseThroatSurgery, 1, 0.04m },
+                new object[] { EarNoseThroatSurgery, 2, 0.33m },
+                new object[] { EarNoseThroatSurgery, 3, 0.19m },
+                new object[] { EarNoseThroatSurgery, 4, 0.12m },
+                new object[] { EarNoseThroatSurgery, 5, 0.14m },
+                new object[] { EarNoseThroatSurgery, 6, 0.08m },
+                new object[] { EarNoseThroatSurgery, 7, 0.05m },
+                new object[] { EarNoseThroatSurgery, 8, 0.06m },
+
+                new object[] { GeneralSurgery, 1, 0.08m },
+                new object[] { GeneralSurgery, 2, 0.03m },
+                new object[] { GeneralSurgery, 3, 0.12m },
+                new object[] { GeneralSurgery, 4, 0.19m },
+                new object[] { GeneralSurgery, 5, 0.20m },
+                new object[] { GeneralSurgery, 6, 0.03m },
+                new object[] { GeneralSurgery, 7, 0.25m },
+                new object[] { GeneralSurgery, 8, 0.09m },
+
+                new object[] { GynecologicalSurgery, 1, 0.02m },
+                new object[] { GynecologicalSurgery, 2, 0.14m },
+                new object[] { GynecologicalSurgery, 3, 0.19m },
+                new object[] { GynecologicalSurgery, 4, 0.25m },
+                new object[] { GynecologicalSurgery, 5, 0.32m },
+                new object[] { GynecologicalSurgery, 6, 0.02m },
+                new object[] { GynecologicalSurgery, 7, 0.06m },
+                new object[] { GynecologicalSurgery, 8, 0.00m },
+
+                new object[] { Neurosurgery, 1, 0.08m },
+                new object[] { Neurosurgery, 2, 0.17m },
+                new object[] { Neurosurgery, 3, 0.14m },
+                new object[] { Neurosurgery, 4, 0.28m },
+                new object[] { Neurosurgery, 5, 0.12m },
+                new object[] { Neurosurgery, 6, 0.21m },
+                new object[] { Neurosurgery, 7, 0m },
+                new object[] { Neurosurgery, 8, 0m },
+
+                new object[] { Ophthalmology, 1, 0.01m },
+                new object[] { Ophthalmology, 2, 0.35m },
+                new object[] { Ophthalmology, 3, 0.42m },
+                new object[] { Ophthalmology, 4, 0.17m },
+                new object[] { Ophthalmology, 5, 0.05m },
+                new object[] { Ophthalmology, 6, 0m },
+                new object[] { Ophthalmology, 7, 0m },
+                new object[] { Ophthalmology, 8, 0m },
+
+                new object[] { OralSurgery, 1, 0.01m },
+                new object[] { OralSurgery, 2, 0.44m },
+                new object[] { OralSurgery, 3, 0.44m },
+                new object[] { OralSurgery, 4, 0.11m },
+                new object[] { OralSurgery, 5, 0m },
+                new object[] { OralSurgery, 6, 0m },
+                new object[] { OralSurgery, 7, 0m },
+                new object[] { OralSurgery, 8, 0m },
+
+                new object[] { OrthopedicSurgery, 1, 0.09m },
+                new object[] { OrthopedicSurgery, 2, 0.10m },
+                new object[] { OrthopedicSurgery, 3, 0.18m },
+                new object[] { OrthopedicSurgery, 4, 0.21m },
+                new object[] { OrthopedicSurgery, 5, 0.21m },
+                new object[] { OrthopedicSurgery, 6, 0.16m },
+                new object[] { OrthopedicSurgery, 7, 0.05m },
+                new object[] { OrthopedicSurgery, 8, 0m },
+
+                new object[] { PlasticSurgery, 1, 0.05m },
+                new object[] { PlasticSurgery, 2, 0.14m },
+                new object[] { PlasticSurgery, 3, 0.17m },
+                new object[] { PlasticSurgery, 4, 0.21m },
+                new object[] { PlasticSurgery, 5, 0.22m },
+                new object[] { PlasticSurgery, 6, 0.11m },
+                new object[] { PlasticSurgery, 7, 0.10m },
+                new object[] { PlasticSurgery, 8, 0m },
+
+                new object[] { Trauma, 1, 0.07m },
+                new object[] { Trauma, 2, 0.22m },
+                new object[] { Trauma, 3, 0.32m },
+                new object[] { Trauma, 4, 0.20m },
+                new object[] { Trauma, 5, 0.19m },
+                new object[] { Trauma, 6, 0m },
+                new object[] { Trauma, 7, 0m },
+                new object[] { Trauma, 8, 0m },
+
+                new object[] { Urology, 1, 0.03m },
+                new object[] { Urology, 2, 0.05m },
+                new object[] { Urology, 3, 0.30m },
+                new object[] { Urology, 4, 0.15m },
+                new object[] { Urology, 5, 0.17m },
+                new object[] { Urology, 6, 0.21m },
+                new object[] { Urology, 7, 0.08m },
+                new object[] { Urology, 8, 0m },
+            };
 
         [TestMethod]
-        public void EarNoseThroatSurgery()
+        [DynamicData(nameof(Table2Data))]
+        public void Table2(
+            string specialty,
+            int category,
+            decimal value)
         {
             // Arrange
-            ISurgicalFrequencyExportTestBuilder builder = new SurgicalFrequencyExportTestBuilder();
+            IAbstractFactory abstractFactory = AbstractFactory.Create();
 
-            int numberCategories = 8;
+            IContextsAbstractFactory contextsAbstractFactory = abstractFactory.CreateContextsAbstractFactory();
 
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 0.04m;
-            data[2] = 0.33m;
-            data[3] = 0.19m;
-            data[4] = 0.12m;
-            data[5] = 0.14m;
-            data[6] = 0.08m;
-            data[7] = 0.05m;
-            data[8] = 0.06m;
+            IDependenciesAbstractFactory dependenciesAbstractFactory = abstractFactory.CreateDependenciesAbstractFactory();
 
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithEarNoseThroatSurgery()
-                     .Build();
+            IExportsAbstractFactory exportsAbstractFactory = abstractFactory.CreateExportsAbstractFactory();
 
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
-            }
-        }
+            ISurgicalFrequencyInputContext surgicalFrequencyInputContext = contextsAbstractFactory.CreateSurgicalFrequencyInputContextFactory().Create(
+                category: dependenciesAbstractFactory.CreateNullableValueFactory().Create<int>(category),
+                specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().Create(specialty, SNOMEDCT, null));
 
-        [TestMethod]
-        public void GeneralSurgery()
-        {
-            // Arrange
-            ISurgicalFrequencyExportTestBuilder builder = new SurgicalFrequencyExportTestBuilder();
+            ISurgicalFrequencyExport surgicalFrequencyExport = abstractFactory.CreateExportsAbstractFactory().CreateSurgicalFrequencyExportFactory().Create();
 
-            int numberCategories = 8;
+            // Act
+            ISurgicalFrequencyOutputContext surgicalFrequencyOutputContext = surgicalFrequencyExport.GetSurgicalFrequency(
+                abstractFactory,
+                surgicalFrequencyInputContext);
 
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 0.08m;
-            data[2] = 0.03m;
-            data[3] = 0.12m;
-            data[4] = 0.19m;
-            data[5] = 0.20m;
-            data[6] = 0.03m;
-            data[7] = 0.25m;
-            data[8] = 0.09m;
-
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithGeneralSurgery()
-                     .Build();
-
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
-            }
-        }
-
-        [TestMethod]
-        public void GynecologicalSurgery()
-        {
-            // Arrange
-            ISurgicalFrequencyExportTestBuilder builder = new SurgicalFrequencyExportTestBuilder();
-
-            int numberCategories = 8;
-
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 0.02m;
-            data[2] = 0.14m;
-            data[3] = 0.19m;
-            data[4] = 0.25m;
-            data[5] = 0.32m;
-            data[6] = 0.02m;
-            data[7] = 0.06m;
-            data[8] = 0.00m;
-
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithGynecologicalSurgery()
-                     .Build();
-
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
-            }
-        }
-
-        [TestMethod]
-        public void Neurosurgery()
-        {
-            // Arrange
-            ISurgicalFrequencyExportTestBuilder builder = new SurgicalFrequencyExportTestBuilder();
-
-            int numberCategories = 8;
-
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 0.08m;
-            data[2] = 0.17m;
-            data[3] = 0.14m;
-            data[4] = 0.28m;
-            data[5] = 0.12m;
-            data[6] = 0.21m;
-            data[7] = 0.00m;
-            data[8] = 0.00m;
-
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithNeurosurgery()
-                     .Build();
-
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
-            }
-        }
-
-        [TestMethod]
-        public void Ophthalmology()
-        {
-            // Arrange
-            ISurgicalFrequencyExportTestBuilder builder = new SurgicalFrequencyExportTestBuilder();
-
-            int numberCategories = 8;
-
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 0.01m;
-            data[2] = 0.35m;
-            data[3] = 0.42m;
-            data[4] = 0.17m;
-            data[5] = 0.05m;
-            data[6] = 0.00m;
-            data[7] = 0.00m;
-            data[8] = 0.00m;
-
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithOphthalmology()
-                     .Build();
-
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
-            }
-        }
-
-        [TestMethod]
-        public void OralSurgery()
-        {
-            // Arrange
-            ISurgicalFrequencyExportTestBuilder builder = new SurgicalFrequencyExportTestBuilder();
-
-            int numberCategories = 8;
-
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 0.01m;
-            data[2] = 0.44m;
-            data[3] = 0.44m;
-            data[4] = 0.11m;
-            data[5] = 0.00m;
-            data[6] = 0.00m;
-            data[7] = 0.00m;
-            data[8] = 0.00m;
-
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithOralSurgery()
-                     .Build();
-
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
-            }
-        }
-
-        [TestMethod]
-        public void OrthopedicSurgery()
-        {
-            // Arrange
-            ISurgicalFrequencyExportTestBuilder builder = new SurgicalFrequencyExportTestBuilder();
-
-            int numberCategories = 8;
-
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 0.09m;
-            data[2] = 0.10m;
-            data[3] = 0.18m;
-            data[4] = 0.21m;
-            data[5] = 0.21m;
-            data[6] = 0.16m;
-            data[7] = 0.05m;
-            data[8] = 0.00m;
-
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithOrthopedicSurgery()
-                     .Build();
-
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
-            }
-        }
-
-        [TestMethod]
-        public void PlasticSurgery()
-        {
-            // Arrange
-            ISurgicalFrequencyExportTestBuilder builder = new SurgicalFrequencyExportTestBuilder();
-
-            int numberCategories = 8;
-
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 0.05m;
-            data[2] = 0.14m;
-            data[3] = 0.17m;
-            data[4] = 0.21m;
-            data[5] = 0.22m;
-            data[6] = 0.11m;
-            data[7] = 0.10m;
-            data[8] = 0.00m;
-
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithPlasticSurgery()
-                     .Build();
-
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
-            }
-        }
-
-        [TestMethod]
-        public void Trauma()
-        {
-            // Arrange
-            ISurgicalFrequencyExportTestBuilder builder = new SurgicalFrequencyExportTestBuilder();
-
-            int numberCategories = 8;
-
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 0.07m;
-            data[2] = 0.22m;
-            data[3] = 0.32m;
-            data[4] = 0.20m;
-            data[5] = 0.19m;
-            data[6] = 0.00m;
-            data[7] = 0.00m;
-            data[8] = 0.00m;
-
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithTrauma()
-                     .Build();
-
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
-            }
-        }
-
-        [TestMethod]
-        public void Urology()
-        {
-            // Arrange
-            ISurgicalFrequencyExportTestBuilder builder = new SurgicalFrequencyExportTestBuilder();
-
-            int numberCategories = 8;
-
-            Span<decimal> data = (Span<decimal>)Array.CreateInstance(typeof(decimal), numberCategories + 1);
-            data[1] = 0.03m;
-            data[2] = 0.05m;
-            data[3] = 0.30m;
-            data[4] = 0.15m;
-            data[5] = 0.17m;
-            data[6] = 0.21m;
-            data[7] = 0.08m;
-            data[8] = 0.00m;
-
-            for (int i = 1; i <= numberCategories; i = i + 1)
-            {
-                // Act
-                builder
-                     .WithCategory(
-                         category: i)
-                     .WithUrology()
-                     .Build();
-
-                // Assert
-                Assert.AreEqual(
-                    expected: data[i],
-                    actual: builder.SurgicalFrequencyOutputContext.Frequency.Value.Value);
-            }
+            // Assert
+            Assert.AreEqual(
+                expected: value,
+                actual: surgicalFrequencyOutputContext.Frequency.Value.Value);
         }
     }
 }
