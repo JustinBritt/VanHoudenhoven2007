@@ -142,7 +142,7 @@
                 category: dependenciesAbstractFactory.CreateNullableValueFactory().Create<int>(category),
                 specialty: dependenciesAbstractFactory.CreateCodeableConceptFactory().Create(specialty, SNOMEDCT, null));
 
-            ISurgicalFrequencyExport surgicalFrequencyExport = abstractFactory.CreateExportsAbstractFactory().CreateSurgicalFrequencyExportFactory().Create();
+            ISurgicalFrequencyExport surgicalFrequencyExport = exportsAbstractFactory.CreateSurgicalFrequencyExportFactory().Create();
 
             // Act
             ISurgicalFrequencyOutputContext surgicalFrequencyOutputContext = surgicalFrequencyExport.GetSurgicalFrequency(
